@@ -164,7 +164,7 @@ class Opening {
   ask(text){
     this.message(text,true);const t=text.toLowerCase();let answer,href;
     if(/contact|email|mail|reach|talk|github/.test(t)){answer='Email balakrishnan.code@email.com, or use the contact section for GitHub, LinkedIn and a ready-to-copy message.';href='#contact';}
-    else if(/available|hire|freelance|job|open/.test(t)){answer='Available to join immediately. Currently a paid Full Stack Developer Intern at Shanthi IT Solutions, August 2026–present.';href='#contact';}
+    else if(/available|hire|freelance|job|open/.test(t)){answer='Available to join immediately. Currently a paid Full Stack Developer Intern at Shanthi IT Solution, August 2026–present.';href='#contact';}
     else if(/stack|tech|tools|language|react|node|skills/.test(t)){answer='MERN development: MongoDB, Express, React and Node.js, plus JavaScript, HTML, CSS, Git and Firebase. This portfolio itself is built with native HTML, CSS and JavaScript.';href='#skills';}
     else if(/build|work|project|make/.test(t)){answer='Four projects: BillPro, Pizza Palace, a TripAdvisor recreation, and KADAI. Selected work includes the available repositories, demos and the BillPro case study.';href='#projects';}
     else if(/\b(hi|hello|hey|vanakkam|namaste)\b/.test(t)){answer='Hello! வணக்கம்! नमस्ते! Ask about projects, skills, availability or contact.';}
