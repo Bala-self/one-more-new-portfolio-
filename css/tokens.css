@@ -12,7 +12,7 @@
 
 @font-face {
   font-family: "Instrument Serif";
-  src: url("/assets/fonts/instrument-serif.woff2") format("woff2");
+  src: url("../assets/fonts/instrument-serif.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -20,7 +20,7 @@
 
 @font-face {
   font-family: "Instrument Serif";
-  src: url("/assets/fonts/instrument-serif-italic.woff2") format("woff2");
+  src: url("../assets/fonts/instrument-serif-italic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -28,7 +28,7 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("/assets/fonts/inter.woff2") format("woff2");
+  src: url("../assets/fonts/inter.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -36,7 +36,7 @@
 
 @font-face {
   font-family: "JetBrains Mono";
-  src: url("/assets/fonts/jetbrains-mono.woff2") format("woff2");
+  src: url("../assets/fonts/jetbrains-mono.woff2") format("woff2");
   font-weight: 400 600;
   font-style: normal;
   font-display: swap;
@@ -44,14 +44,14 @@
 
 @font-face {
   font-family: "Noto Sans Tamil";
-  src: url("/assets/fonts/noto-tamil.woff2") format("woff2");
+  src: url("../assets/fonts/noto-tamil.woff2") format("woff2");
   font-weight: 300;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Noto Sans Devanagari";
-  src: url("/assets/fonts/noto-devanagari.woff2") format("woff2");
+  src: url("../assets/fonts/noto-devanagari.woff2") format("woff2");
   font-weight: 300;
   font-display: swap;
 }
