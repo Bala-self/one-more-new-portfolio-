@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:M;Balakrishnan;;;
+FN:Balakrishnan M
+TITLE:MERN Stack Developer
+EMAIL;TYPE=INTERNET:balakrishnan.code@email.com
+TEL;TYPE=CELL:+919384590539
+ADR;TYPE=WORK:;;;Chennai;Tamil Nadu;;India
+URL:https://www.linkedin.com/in/balakrishnan-m-509aa8423/
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/balakrishnan-m-509aa8423/
+END:VCARD

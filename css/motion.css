@@ -1,0 +1,154 @@
+/* ==========================================================================
+   motion.css — reveal choreography, word masks, ambient layers, and the
+   reduced-motion contract.
+
+   Contract:
+   1. Nothing is hidden by CSS alone. Elements only start transparent once
+      JavaScript has added `html.motion-enabled` — and that class is only
+      added when the IntersectionObserver that reveals them is running.
+   2. `html.motion-paused` (user toggle) and `prefers-reduced-motion`
+      neutralise every transition and keyframe below.
+   ========================================================================== */
+
+/* ---- Scroll reveal ------------------------------------------------------ */
+
+html.motion-enabled:not(.motion-paused) [data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--rise));
+  transition:
+    opacity var(--dur-slow) ease,
+    transform 800ms var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+html.motion-enabled:not(.motion-paused) [data-reveal="fade"] {
+  transform: none;
+}
+
+html.motion-enabled:not(.motion-paused) [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger helpers: set --reveal-delay inline via the data-reveal-delay hook. */
+[data-reveal-delay="1"] { --reveal-delay: 80ms; }
+[data-reveal-delay="2"] { --reveal-delay: 160ms; }
+[data-reveal-delay="3"] { --reveal-delay: 240ms; }
+[data-reveal-delay="4"] { --reveal-delay: 320ms; }
+
+/* ---- Word masks (display headings) ------------------------------------- */
+
+.split-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* Room for descenders and italic overhang so glyphs are never clipped. */
+  padding: 0.08em 0.06em 0.14em;
+  margin: -0.08em -0.06em -0.14em;
+}
+
+.split-word > span {
+  display: inline-block;
+}
+
+html.motion-enabled:not(.motion-paused) [data-split]:not(.is-in) .split-word > span {
+  transform: translateY(110%);
+  opacity: 0;
+}
+
+html.motion-enabled:not(.motion-paused) [data-split] .split-word > span {
+  transition:
+    transform 900ms var(--ease-out),
+    opacity 500ms ease;
+  transition-delay: calc(var(--word-index, 0) * 55ms);
+}
+
+/* ---- Hero entrance ------------------------------------------------------ */
+
+html.motion-enabled:not(.motion-paused) .hero [data-hero-rise] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--dur-slow) ease,
+    transform 800ms var(--ease-out);
+  transition-delay: calc(var(--hero-index, 0) * 90ms + 200ms);
+}
+
+html.motion-enabled:not(.motion-paused) .hero.is-in [data-hero-rise] {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Parallax (set by JS on data-speed elements) ----------------------- */
+
+[data-speed] {
+  will-change: transform;
+  transform: translate3d(0, var(--parallax, 0px), 0);
+}
+
+/* The hero copy fades slightly as it leaves the viewport. */
+.hero-grid {
+  opacity: var(--hero-fade, 1);
+}
+
+/* ---- Cursor trail canvas ----------------------------------------------- */
+
+.space-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity var(--dur-base) ease;
+}
+
+html.space-cursor-ready .space-cursor {
+  opacity: 1;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .space-cursor {
+    display: none;
+  }
+}
+
+/* ---- Reduced motion ----------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-speed] {
+    transform: none;
+  }
+
+  .hero-grid {
+    opacity: 1;
+  }
+}
+
+html.motion-paused *,
+html.motion-paused *::before,
+html.motion-paused *::after {
+  animation-play-state: paused !important;
+}
+
+html.motion-paused [data-speed] {
+  transform: none;
+}
+
+html.motion-paused .hero-grid {
+  opacity: 1;
+}

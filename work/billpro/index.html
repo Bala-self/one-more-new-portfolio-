@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="2026-10-20-r8.3" name="build" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>BillPro — A MERN GST Billing Case Study | Balakrishnan M</title>
+    <meta content="How Balakrishnan M built BillPro: shared GST calculations, stock tracking, Express middleware, Mongoose models and API testing." name="description" />
+    <meta content="#f6f1e8" name="theme-color" />
+    <meta content="article" property="og:type" />
+    <meta content="BillPro — A MERN GST Billing Case Study | Balakrishnan M" property="og:title" />
+    <meta content="How Balakrishnan M built BillPro: shared GST calculations, stock tracking, Express middleware, Mongoose models and API testing." property="og:description" />
+    <meta content="/assets/img/billpro.webp" property="og:image" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <link href="/assets/favicon.svg" rel="icon" type="image/svg+xml" />
+    <link href="/assets/icon-192.png" rel="apple-touch-icon" />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link as="font" crossorigin href="/assets/fonts/playfair-display.woff2" rel="preload" type="font/woff2" />
+    <link as="font" crossorigin href="/assets/fonts/inter.woff2" rel="preload" type="font/woff2" />
+    <script>
+      if (new URLSearchParams(location.search).has("embed")) document.documentElement.classList.add("is-embedded");
+    </script>
+    <link href="/css/site.css" rel="stylesheet" />
+    <link href="/css/case.css" rel="stylesheet" />
+    <link href="/css/opening.css" rel="stylesheet" />
+    <link href="/css/print.css" rel="stylesheet" media="print" />
+    <script src="/js/site.js" type="module"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Balakrishnan M",
+        "jobTitle": "MERN Stack Developer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Chennai",
+          "addressRegion": "Tamil Nadu",
+          "addressCountry": "IN"
+        },
+        "sameAs": [
+          "https://github.com/Bala-self",
+          "https://www.linkedin.com/in/balakrishnan-m-509aa8423/"
+        ],
+        "email": "balakrishnan.code@email.com"
+      }
+    </script>
+    <noscript>
+      <style>
+        .js-only { display: none; }
+        [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; }
+      </style>
+    </noscript>
+  </head>
+  <body class="case-page" id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div aria-hidden="true" class="particle-field"><canvas data-field></canvas></div>
+
+    <header class="site-header" data-header>
+      <div class="header-row">
+        <a aria-label="Balakrishnan M — home" class="brand" href="/">Balakrishnan <em>M.</em></a>
+
+        <nav aria-label="Primary" class="pill-nav" data-nav>
+          <a href="/">Home</a>
+          <a href="/#about">About</a>
+          <a href="/#projects">Projects</a>
+          <button aria-controls="more-menu" aria-expanded="false" class="pill-more" data-more type="button">More <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></button>
+          <a href="/#contact">Contact</a>
+
+          <div class="more-menu" data-more-panel hidden id="more-menu">
+            <div class="more-tiles">
+              <a class="more-tile" href="/#skills" style="--tile: #b9894a"><span class="more-tile-art"></span><span class="more-tile-copy"><b>Skills</b><small>Frontend, backend, databases and the tools in between.</small></span></a>
+              <a class="more-tile" href="/#journey" style="--tile: #a86b3d"><span class="more-tile-art"></span><span class="more-tile-copy"><b>Journey</b><small>School, engineering, then the internship.</small></span></a>
+              <a class="more-tile" href="/#certifications" style="--tile: #c97e66"><span class="more-tile-art"></span><span class="more-tile-copy"><b>Certifications</b><small>Two of them, both earned.</small></span></a>
+              <a class="more-tile" href="/#repos" style="--tile: #8b3a3a"><span class="more-tile-art"></span><span class="more-tile-copy"><b>Code Chronicles</b><small>Repositories, in the open.</small></span></a>
+            </div>
+            <div class="more-list">
+              <a class="more-item" download href="/cv/Balakrishnan_M_MERN_Developer.pdf"><span class="more-icon">↓</span><span><b>Download CV</b><small>PDF, one page.</small></span><i>→</i></a>
+              <a class="more-item" href="/work/billpro/"><span class="more-icon">▤</span><span><b>BillPro case study</b><small>How the GST billing app was built.</small></span><i>→</i></a>
+              <a class="more-item" download href="/Balakrishnan-M.vcf"><span class="more-icon">☎</span><span><b>Save contact</b><small>.vcf for your phone.</small></span><i>→</i></a>
+            </div>
+          </div>
+        </nav>
+
+        <div class="header-actions">
+          <a class="hire" href="mailto:balakrishnan.code@email.com?subject=Let%E2%80%99s%20work%20together&amp;body=Hi%20Balakrishnan%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20potential%20opportunity.">Hire Me</a>
+          <button aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu" class="menu-button js-only" data-menu-open type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+        </div>
+      </div>
+    </header>
+
+    <div aria-hidden="true" class="mobile-menu" data-mobile-menu id="mobile-menu">
+      <div class="mobile-menu-head">
+        <span class="brand">Balakrishnan <em>M.</em></span>
+        <button aria-label="Close menu" class="menu-button" data-menu-close type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></svg></button>
+      </div>
+      <nav aria-label="Sections">
+        <a href="/">Home</a>
+        <a href="/#about">About</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#skills">Skills</a>
+        <a href="/#journey">Journey</a>
+        <a href="/#certifications">Certifications</a>
+        <a href="/#repos">Code Chronicles</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <div class="mobile-menu-foot">
+        <a class="hire" href="mailto:balakrishnan.code@email.com">Hire Me</a>
+        <a class="ghost" download href="/cv/Balakrishnan_M_MERN_Developer.pdf">View Resume</a>
+      </div>
+    </div>
+
+    <main id="main">
+      <section aria-labelledby="case-title" class="case-hero section-inner">
+        <a class="case-back" href="/#projects"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><path d="M20 12H4m6 6-6-6 6-6"></path></svg> Back to selected work</a>
+        <span class="eyebrow">Case study / 01</span>
+        <h1 id="case-title">BillPro.</h1>
+        <p class="case-subtitle" data-reveal>The everyday business of billing.<br />One system, from stock to GST invoice.</p>
+        <dl class="case-meta" data-reveal>
+          <div>
+            <dt>My role</dt>
+            <dd>Full-stack development</dd>
+          </div>
+          <div>
+            <dt>Built with</dt>
+            <dd>MongoDB · Express · React · Node</dd>
+          </div>
+          <div>
+            <dt>Year</dt>
+            <dd>2026</dd>
+          </div>
+        </dl>
+        <div class="project-links" data-reveal>
+          <a class="btn-solid" href="https://github.com/Bala-self/billing-software" rel="noopener noreferrer" target="_blank">Explore the repository <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="#architecture">See the architecture ↓</a>
+        </div>
+
+        <figure class="case-cover" data-reveal>
+          <div class="browser">
+            <div class="browser-chrome">
+              <span aria-hidden="true" class="browser-dots"><i></i><i></i><i></i></span>
+              <span class="browser-url">BillPro / Dashboard</span>
+            </div>
+            <a aria-label="Enlarge BillPro dashboard screenshot" data-lightbox href="/assets/img/billpro.webp">
+              <img alt="BillPro dashboard: sales, purchases, receivables, stock value and recent invoices" fetchpriority="high" height="900" loading="eager" sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 1259px) 92vw, 1200px" src="/assets/img/billpro.webp" srcset="/assets/img/billpro-400.webp 400w, /assets/img/billpro-800.webp 800w, /assets/img/billpro.webp 1440w" width="1440" />
+            </a>
+          </div>
+          <figcaption class="media-caption">
+            <span>Actual application screenshot · click to enlarge</span>
+            <span>Full-stack / 2026</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <div class="section-inner">
+        <div class="case-content">
+          <section aria-labelledby="context-title" class="case-block" data-reveal>
+            <span class="eyebrow">01 — Context</span>
+            <h2 id="context-title">More than an invoice generator.</h2>
+            <p>A small business doesn’t have a “billing problem” in isolation. Every invoice touches stock, a customer balance, tax calculations and a record someone will need to find later. BillPro brings those connected tasks into one MERN application.</p>
+            <p>I built it around business-level data separation: users belong to a business, and backend operations use that business context. Invoices, products, purchases, quotations, customers, employees and reports share the same foundation rather than becoming disconnected tools.</p>
+            <p>The aim is straightforward: keep the workflow understandable, and make the server responsible for the numbers that matter.</p>
+          </section>
+
+          <section aria-labelledby="architecture-title" class="case-block" id="architecture" data-reveal>
+            <span class="eyebrow">02 — Architecture</span>
+            <h2 id="architecture-title">Clear boundaries. Shared logic.</h2>
+            <p>The React client talks to an Express API. Middleware handles security, authentication and permissions before a controller reaches the business logic. Mongoose models describe the data; PDFKit turns stored transactions into documents.</p>
+            <div class="architecture">
+              <svg aria-labelledby="arch-title arch-desc" role="img" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+                <title id="arch-title">BillPro request architecture</title>
+                <desc id="arch-desc">React browser sends an HTTP request through Helmet, rate limiting, authentication, permissions and validation to Express controllers. Controllers use Mongoose models to access MongoDB and a PDFKit service to generate documents.</desc>
+                <defs>
+                  <marker id="arr" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="3">
+                    <path d="M0 0 7 3 0 6" fill="none" stroke="currentColor"></path>
+                  </marker>
+                </defs>
+                <g fill="none" opacity=".35" stroke="currentColor">
+                  <rect height="60" rx="6" width="150" x="15" y="25"></rect>
+                  <rect height="60" rx="6" width="335" x="230" y="25"></rect>
+                  <rect height="60" rx="6" width="155" x="630" y="25"></rect>
+                  <rect height="60" rx="6" width="155" x="630" y="140"></rect>
+                  <rect height="60" rx="6" width="185" x="370" y="140"></rect>
+                  <rect height="60" rx="6" width="165" x="130" y="140"></rect>
+                  <path d="M165 55h65m335 0h65m78 30v55m-78 30h-75m-185 0h-75" marker-end="url(#arr)"></path>
+                  <path d="M709 85v172H455" marker-end="url(#arr)"></path>
+                </g>
+                <g fill="currentColor" font-family="Inter, Arial, sans-serif" font-size="13" text-anchor="middle">
+                  <text x="90" y="51">React frontend</text>
+                  <text font-size="11" opacity=".65" x="90" y="70">Browser / JWT</text>
+                  <text x="397" y="49">Express middleware</text>
+                  <text font-size="11" opacity=".65" x="397" y="69">Helmet → rate limit → auth → validate</text>
+                  <text x="708" y="61">Controllers</text>
+                  <text x="708" y="175">Business logic</text>
+                  <text x="461" y="175">Mongoose models</text>
+                  <text x="212" y="175">MongoDB</text>
+                  <text x="378" y="260">PDFKit service</text>
+                </g>
+              </svg>
+            </div>
+            <p>The important choice is what the frontend does not own: final tax totals, stock validation and customer balance updates. Those belong behind the API.</p>
+          </section>
+
+          <section aria-labelledby="gst-title" class="case-block" data-reveal>
+            <span class="eyebrow">03 — The GST decision</span>
+            <h2 id="gst-title">Calculate once. Use it everywhere.</h2>
+            <p>Invoices, purchases and quotations should not disagree about tax. The shared <code>backend/utils/billing.js</code> helper calculates each line’s taxable amount, applies the interstate or intrastate split and combines totals with rounding.</p>
+            <p>For example, on a taxable value of ₹1,000 at 18% GST:</p>
+            <table class="gst-table">
+              <thead>
+                <tr>
+                  <th scope="col">Transaction</th>
+                  <th scope="col">Tax treatment</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Intrastate</td>
+                  <td>₹90 CGST + ₹90 SGST</td>
+                  <td>₹1,180</td>
+                </tr>
+                <tr>
+                  <td>Interstate</td>
+                  <td>₹180 IGST</td>
+                  <td>₹1,180</td>
+                </tr>
+                <tr>
+                  <td>Zero-rated line</td>
+                  <td>No GST added at 0%</td>
+                  <td>₹1,000</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>Discounts are applied before tax and clamped so they cannot make a line’s taxable amount negative. The helper accepts an explicit interstate flag; the controller supplies the transaction context.</p>
+            <div class="project-links">
+              <a class="text-link" href="https://github.com/Bala-self/billing-software/blob/main/backend/utils/billing.js" rel="noopener noreferrer" target="_blank">Read the calculation code <span aria-hidden="true">↗</span></a>
+            </div>
+          </section>
+
+          <section aria-labelledby="data-title" class="case-block" data-reveal>
+            <span class="eyebrow">04 — Data model</span>
+            <h2 id="data-title">Keep a record of the movement.</h2>
+            <p>An invoice captures the line-item values at the time of sale. A stock movement separately records how a product’s quantity changed, with a reference back to the transaction. These are abbreviated shapes from the models, not the complete schema.</p>
+            <pre aria-label="Abbreviated invoice and stock movement data shapes" class="code-block" tabindex="0"><code>Invoice item {
+  product, name, sku, hsnCode, unit,
+  quantity, unitPrice,
+  discount, discountType,
+  taxableAmount, taxRate,
+  cgstAmount, sgstAmount, igstAmount, total
+}
+
+StockMovement {
+  businessId, productId,
+  type,              // SALE, PURCHASE, RETURN, ADJUSTMENT
+  quantity,          // positive in; negative out
+  previousStock, newStock,
+  referenceId, referenceNumber,
+  note, performedBy, timestamps
+}</code></pre>
+          </section>
+
+          <section aria-labelledby="testing-title" class="case-block" data-reveal>
+            <span class="eyebrow">05 — Testing</span>
+            <h2 id="testing-title">Test the maths, not just the route.</h2>
+            <p>The repository contains Jest tests for the billing helpers and Supertest API tests. The calculation suite calls the same functions used by the controllers, independently of an HTTP server or a database.</p>
+            <ul>
+              <li>CGST and SGST split evenly for intrastate transactions.</li>
+              <li>Interstate transactions use IGST instead.</li>
+              <li>Discounts, quantities, zero tax and totals receive dedicated checks.</li>
+              <li>API tests use an in-memory MongoDB setup.</li>
+            </ul>
+            <div class="notice">Test source is available below. A passing test count and run screenshot are intentionally not published until there is a reproducible run to link to.</div>
+            <div class="project-links">
+              <a class="text-link" href="https://github.com/Bala-self/billing-software/tree/main/backend/tests" rel="noopener noreferrer" target="_blank">Inspect the tests <span aria-hidden="true">↗</span></a>
+            </div>
+          </section>
+
+          <section aria-labelledby="perf-title" class="case-block" data-reveal>
+            <span class="eyebrow">06 — Performance &amp; trade-offs</span>
+            <h2 id="perf-title">Start with the boring improvements.</h2>
+            <p>Indexed MongoDB queries, pagination, compression and database-level aggregation keep reporting and list endpoints from doing unnecessary work. These are implementation choices, not a substitute for measuring real workloads.</p>
+            <h3>What I would change next</h3>
+            <p>Before a production rollout, I would audit the development/demo authentication paths, verify transactional consistency when invoice and inventory updates fail midway, and measure representative datasets. The next priority is a safely seeded public demo with a repeatable reset process—not more dashboard widgets.</p>
+            <div class="notice">BillPro’s source is public. A verified public demo URL and demo account have not yet been supplied, so this portfolio does not publish invented credentials.</div>
+          </section>
+
+          <section aria-labelledby="case-links" class="case-block" data-reveal>
+            <span class="eyebrow">07 — Take a closer look</span>
+            <h2 id="case-links">The code is the rest of the story.</h2>
+            <div class="project-links">
+              <a class="btn-solid" href="https://github.com/Bala-self/billing-software" rel="noopener noreferrer" target="_blank">BillPro repository <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="/#projects">More selected work →</a>
+              <a class="text-link" href="mailto:balakrishnan.code@email.com?subject=MERN%20role%20%E2%80%94%20%5BCompany%5D&amp;body=Hi%20Balakrishnan%2C%0A%0AI%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20MERN%20developer%20role.">Talk about the project ↗</a>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <section aria-labelledby="contact-title" class="case-footer-cta" id="contact">
+        <div class="section-inner" data-reveal>
+          <span class="eyebrow">Let’s talk</span>
+          <h2 class="h2 grad" id="contact-title">Good work starts with <em>a conversation.</em></h2>
+          <div class="contact-direct">
+            <a data-copy-email href="mailto:balakrishnan.code@email.com?subject=MERN%20role%20%E2%80%94%20%5BCompany%5D&amp;body=Hi%20Balakrishnan%2C%0A%0AI%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20MERN%20developer%20role."><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><rect height="14" rx="2" width="18" x="3" y="5"></rect><path d="m3 6 9 7 9-7"></path></svg> <span>balakrishnan.code@email.com</span></a>
+            <a href="https://www.linkedin.com/in/balakrishnan-m-509aa8423/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><path d="M7 10v7m0-10v.1M11 17v-7m0 3c0-4 6-4 6 0v4"></path></svg> LinkedIn</a>
+            <a href="https://github.com/Bala-self" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><path d="M9 22v-4c-5 1-5-2-7-2m13 6v-4c0-1-.3-2-1-2 3-.4 6-2 6-6 0-2-.5-3-1-4 .3-1 .3-2 0-3-2 0-3 1-4 2a12 12 0 0 0-6 0C8 4 7 3 5 3c-.3 1-.3 2 0 3-1 1-1 2-1 4 0 4 3 5.6 6 6-1 .5-1 1-1 2"></path></svg> GitHub</a>
+            <a href="https://wa.me/919384590539?text=Hi%20Balakrishnan%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20role." rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-1 1V12A9 9 0 1 1 21 11.5Z"></path><path d="M8 9c1 4 3 6 7 7l2-2-3-2-1 1-2-2 1-1-2-3Z"></path></svg> WhatsApp</a>
+            <a href="tel:+919384590539"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><path d="M6 3h3l2 5-3 2a14 14 0 0 0 6 6l2-3 5 2v3a3 3 0 0 1-3 3A18 18 0 0 1 3 6a3 3 0 0 1 3-3Z"></path></svg> Call me</a>
+            <a download href="/cv/Balakrishnan_M_MERN_Developer.pdf"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5"></path></svg> Download CV</a>
+            <a download href="/Balakrishnan-M.vcf">Save contact (.vcf) ↓</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Balakrishnan M · Built by hand with HTML, CSS &amp; JavaScript</p>
+      <nav aria-label="Footer links">
+        <a download href="/cv/Balakrishnan_M_MERN_Developer.pdf">Download CV</a>
+        <a download href="/Balakrishnan-M.vcf">Save contact (.vcf)</a>
+        <a href="tel:+919384590539">+91 93845 90539</a>
+        <a href="#top">Back to top ↑</a>
+      </nav>
+    </footer>
+
+    <div aria-live="polite" class="toast" hidden role="status"></div>
+
+    <dialog aria-label="Project screenshot" class="image-viewer">
+      <div class="image-viewer-head">
+        <p class="mono">Detail</p>
+        <button aria-label="Close screenshot" class="menu-button image-close" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></svg></button>
+      </div>
+      <img alt="" />
+      <p class="image-viewer-caption mono"></p>
+    </dialog>
+  </body>
+</html>

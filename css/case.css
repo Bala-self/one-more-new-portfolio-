@@ -1,0 +1,371 @@
+/*
+ * case.css — the BillPro case study, on top of css/site.css (r8.3).
+ * Same tokens, header, footer and widgets as the home page; this file only
+ * styles the long-form article pieces.
+ */
+
+.case-page main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Hero ---------------------------------------------------------- */
+.case-hero {
+  padding: calc(var(--header-h) + 56px) var(--pad-x) 32px;
+  max-width: calc(1200px + 2 * var(--pad-x));
+}
+.case-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-bottom: 36px;
+  transition: color 0.3s;
+}
+.case-back .icon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.3s;
+}
+.case-back:hover {
+  color: var(--bronze);
+}
+.case-back:hover .icon {
+  transform: translateX(-4px);
+}
+.case-hero h1 {
+  font-size: clamp(3.2rem, 10vw, 8rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  background: linear-gradient(135deg, var(--ink) 0%, var(--bronze) 60%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 10px 30px rgba(185, 137, 74, 0.25));
+  animation: rise 0.9s var(--ease-out) both;
+}
+.case-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  line-height: 1.35;
+  color: var(--ink-soft);
+  margin: 24px 0 36px;
+  max-width: 640px;
+}
+.case-meta {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 16px 48px;
+  justify-content: start;
+  margin: 0 0 32px;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.case-meta dt {
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-bottom: 4px;
+}
+.case-meta dd {
+  margin: 0;
+  font-size: 15px;
+  color: var(--ink);
+}
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 26px;
+}
+.text-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--bronze);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+.text-link:hover {
+  border-color: var(--bronze);
+}
+
+/* ---- Cover ---------------------------------------------------------- */
+.case-cover {
+  margin: 56px 0 0;
+}
+.browser {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #fff;
+  box-shadow: 0 40px 90px rgba(29, 22, 17, 0.16);
+}
+.browser::before {
+  content: "";
+  position: absolute;
+  inset: -30% -10% auto;
+  height: 60%;
+  background: radial-gradient(circle at 50% 0%, rgba(212, 175, 122, 0.4), transparent 60%);
+  pointer-events: none;
+}
+.browser-chrome {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-deep);
+}
+.browser-dots {
+  display: flex;
+  gap: 6px;
+}
+.browser-dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+.browser-dots i:first-child {
+  background: var(--rose);
+}
+.browser-dots i:nth-child(2) {
+  background: var(--gold);
+}
+.browser-url {
+  flex: 1;
+  text-align: center;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--muted);
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--line);
+}
+.browser a {
+  display: block;
+}
+.browser img {
+  width: 100%;
+  transition: transform 0.8s var(--ease-out);
+}
+.browser:hover img {
+  transform: scale(1.015);
+}
+.media-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 12px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* ---- Article -------------------------------------------------------- */
+.case-content {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 72px var(--pad-x) 40px;
+  display: grid;
+  gap: 72px;
+}
+.case-block {
+  display: grid;
+  gap: 18px;
+}
+.case-block h2 {
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  background: linear-gradient(135deg, var(--ink), var(--bronze));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.case-block h3 {
+  font-size: 1.25rem;
+  margin-top: 8px;
+}
+.case-block p,
+.case-block li {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.case-block ul {
+  display: grid;
+  gap: 10px;
+}
+.case-block li {
+  position: relative;
+  padding-left: 22px;
+}
+.case-block li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  border-left: 8px solid var(--gold);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.case-block code {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.9em;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--gold-soft);
+  color: var(--bronze);
+}
+.architecture {
+  padding: 24px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 16px 40px rgba(29, 22, 17, 0.05);
+}
+.architecture svg {
+  width: 100%;
+  height: auto;
+}
+.gst-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.gst-table th,
+.gst-table td {
+  text-align: left;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.gst-table th {
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  background: var(--bg-deep);
+}
+.gst-table tr:last-child td {
+  border-bottom: 0;
+}
+.gst-table td:last-child {
+  font-weight: 600;
+  color: var(--ink);
+}
+.code-block {
+  margin: 0;
+  padding: 22px 24px;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: #f2ead9;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  overflow-x: auto;
+  box-shadow: 0 24px 50px rgba(29, 22, 17, 0.2);
+}
+.code-block code {
+  font: inherit;
+  padding: 0;
+  background: none;
+  color: inherit;
+}
+.notice {
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--line-strong);
+  border-left: 3px solid var(--gold);
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ---- Contact strip -------------------------------------------------- */
+.case-footer-cta {
+  padding: clamp(64px, 9vw, 112px) var(--pad-x);
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.5));
+  text-align: center;
+}
+.case-footer-cta .h2 {
+  max-width: 14ch;
+  margin: 0 auto 36px;
+  font-size: clamp(2rem, 5vw, 3.75rem);
+}
+.case-footer-cta .h2 em {
+  font-style: italic;
+  font-weight: 400;
+}
+.contact-direct {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.contact-direct a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  font-size: 14px;
+  color: var(--ink-soft);
+  transition: transform 0.3s var(--ease-out), border-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.contact-direct a:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  color: var(--bronze);
+  box-shadow: 0 10px 24px rgba(185, 137, 74, 0.25);
+}
+.contact-direct .icon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---- Small screens -------------------------------------------------- */
+@media (max-width: 760px) {
+  .case-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+  .case-content {
+    padding-top: 48px;
+    gap: 56px;
+  }
+  .case-block p,
+  .case-block li {
+    font-size: 16px;
+  }
+  .media-caption {
+    flex-direction: column;
+    gap: 4px;
+  }
+}

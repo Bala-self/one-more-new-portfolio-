@@ -1,0 +1,656 @@
+/* ==========================================================================
+   opening.css — the trilingual greeting, portal wipe, and "Bit" the guide.
+
+   All markup here is created by js/opening.js. The layer sits above the
+   page (z-index token) and takes no space when complete; only the pet and
+   its chat remain. Colours come from the light tokens.
+   ========================================================================== */
+
+.opening-experience {
+  --pet-left: clamp(14px, 4vw, 44px);
+  --pet-bottom: 0px;
+  --ease-out-opening: cubic-bezier(0.22, 1, 0.36, 1);
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-opening);
+  pointer-events: none;
+  font: 400 15px/1.5 var(--font-sans);
+  color: var(--ink);
+}
+
+@media (max-width: 639px) {
+  .opening-experience {
+    --pet-bottom: calc(var(--mobile-bar-h) + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+.opening-experience .intro-layer,
+.opening-experience .pet-chat,
+.opening-experience .portfolio-btn {
+  pointer-events: auto;
+}
+
+.opening-experience p {
+  margin: 0;
+}
+
+html.opening-locked,
+body.opening-locked {
+  overflow: hidden;
+}
+
+/* ---- Intro layer -------------------------------------------------------- */
+
+.opening-experience .intro-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  overflow: hidden;
+  /* Black and gold: the layer carries its own ink tokens so the greeting,
+     hint and button all pick up the night palette. */
+  --ink: #f2ead9;
+  --ink-3: #b9894a;
+  background:
+    radial-gradient(60% 50% at 50% 100%, rgba(185, 137, 74, 0.22) 0%, rgba(185, 137, 74, 0) 70%),
+    radial-gradient(ellipse at top, #16110c 0%, #05070d 60%, #000 100%);
+  color: var(--ink);
+  will-change: mask-image;
+}
+
+.opening-experience .intro-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(242, 234, 217, 0.9), transparent 2px),
+    radial-gradient(1px 1px at 28% 62%, rgba(242, 234, 217, 0.7), transparent 2px),
+    radial-gradient(1.5px 1.5px at 44% 30%, rgba(212, 175, 122, 0.9), transparent 2px),
+    radial-gradient(1px 1px at 58% 78%, rgba(242, 234, 217, 0.6), transparent 2px),
+    radial-gradient(1px 1px at 71% 22%, rgba(212, 175, 122, 0.8), transparent 2px),
+    radial-gradient(1.5px 1.5px at 84% 56%, rgba(242, 234, 217, 0.8), transparent 2px),
+    radial-gradient(1px 1px at 92% 84%, rgba(212, 175, 122, 0.7), transparent 2px),
+    radial-gradient(1px 1px at 6% 88%, rgba(242, 234, 217, 0.5), transparent 2px),
+    radial-gradient(1px 1px at 36% 92%, rgba(212, 175, 122, 0.6), transparent 2px),
+    radial-gradient(1px 1px at 64% 8%, rgba(242, 234, 217, 0.8), transparent 2px);
+  animation: intro-twinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes intro-twinkle {
+  from {
+    opacity: 0.45;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---- Intro sky: shooting stars (built by intro-sky.js) ------------------
+   Night layer rotated 45°; each star is a thin streak whose tail grows and
+   shrinks while it travels 300px, with two crossed "shine" strokes at the
+   head. Per-star position and delay come from --top / --left / --delay. */
+
+.opening-experience .night {
+  --shooting-time: 3000ms;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transform: rotateZ(45deg);
+  pointer-events: none;
+}
+
+.opening-experience .shooting_star {
+  position: absolute;
+  top: calc(50% - var(--top, 0px));
+  left: calc(50% - var(--left, 0px));
+  height: 2px;
+  width: 0;
+  border-radius: 999px;
+  background: linear-gradient(-45deg, rgba(212, 175, 122, 1), rgba(212, 175, 122, 0));
+  filter: drop-shadow(0 0 6px rgba(212, 175, 122, 0.9));
+  animation:
+    intro-tail var(--shooting-time) ease-in-out infinite,
+    intro-shooting var(--shooting-time) ease-in-out infinite;
+  animation-delay: var(--delay, 0ms);
+}
+
+.opening-experience .shooting_star::before,
+.opening-experience .shooting_star::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1px);
+  right: 0;
+  height: 2px;
+  width: 0;
+  border-radius: 100%;
+  background: linear-gradient(-45deg, rgba(212, 175, 122, 0), rgba(242, 234, 217, 1), rgba(212, 175, 122, 0));
+  transform: translateX(50%) rotateZ(45deg);
+  animation: intro-shining var(--shooting-time) ease-in-out infinite;
+  animation-delay: var(--delay, 0ms);
+}
+
+.opening-experience .shooting_star::after {
+  transform: translateX(50%) rotateZ(-45deg);
+}
+
+@keyframes intro-tail {
+  0% {
+    width: 0;
+  }
+
+  30% {
+    width: 100px;
+  }
+
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes intro-shining {
+  0% {
+    width: 0;
+  }
+
+  50% {
+    width: 30px;
+  }
+
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes intro-shooting {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(300px);
+  }
+}
+
+.opening-experience .intro-center {
+  position: relative;
+  z-index: 1;
+}
+
+.opening-experience .intro-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  pointer-events: none;
+}
+
+.opening-experience .greeting-stage {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 2.6em;
+  font-size: clamp(1.9rem, 6.2vw, 5.25rem);
+  text-align: center;
+}
+
+.opening-experience .greeting {
+  grid-area: 1 / 1;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 1em;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  max-width: 16ch;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.opening-experience .greeting[lang="ta"] {
+  font-family: "Noto Sans Tamil", var(--font-sans);
+  letter-spacing: -0.01em;
+  font-size: 0.74em;
+  max-width: 18ch;
+  line-height: 1.35;
+}
+
+.opening-experience .greeting[lang="hi"] {
+  font-family: "Noto Sans Devanagari", var(--font-sans);
+  letter-spacing: -0.005em;
+  font-size: 0.9em;
+  line-height: 1.35;
+}
+
+/* Word mask — padded so Tamil/Devanagari marks are never clipped. */
+.opening-experience .word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.22em 0.04em;
+  margin: -0.22em -0.04em;
+}
+
+.opening-experience .word {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+.opening-experience .cta-slot {
+  height: 56px;
+  margin-top: clamp(28px, 5vh, 48px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.opening-experience .cta-hint {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-12);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.opening-experience .portfolio-btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid #b9894a;
+  background: transparent;
+  color: #d4af7a;
+  height: 48px;
+  box-shadow: 0 0 0 0 rgba(185, 137, 74, 0.4), 0 0 30px rgba(185, 137, 74, 0.18);
+  padding: 0 34px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-mono);
+  font-size: var(--fs-12);
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-indent: 0.32em;
+  transition: color 0.45s var(--ease-out-opening), border-color 0.45s;
+}
+
+.opening-experience .portfolio-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #d4af7a, #b9894a);
+  border-radius: inherit;
+  transform: translateY(101%);
+  transition: transform 0.55s var(--ease-out-opening);
+}
+
+@media (hover: hover) {
+  .opening-experience .portfolio-btn:not(:disabled):hover {
+    color: #05070d;
+  }
+
+  .opening-experience .portfolio-btn:not(:disabled):hover::before {
+    transform: translateY(0);
+  }
+}
+
+.opening-experience .portfolio-btn:focus-visible {
+  outline: 1px solid #d4af7a;
+  outline-offset: 5px;
+}
+
+/* ---- Portal ring -------------------------------------------------------- */
+
+.opening-experience .portal-ring {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 45;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* ---- Bit, the pet ------------------------------------------------------- */
+
+.opening-experience .pet {
+  position: fixed;
+  left: var(--pet-left);
+  bottom: var(--pet-bottom);
+  z-index: 50;
+  width: 76px;
+  height: 84px;
+  pointer-events: none;
+}
+
+.opening-experience .pet-hit {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+  cursor: pointer;
+  border-radius: 24px 24px 0 0;
+}
+
+.opening-experience .pet-hit:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.opening-experience .pet-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 54px;
+  height: 10px;
+  margin-left: -27px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(16, 27, 54, 0.35), transparent);
+}
+
+.opening-experience .pet-jump,
+.opening-experience .pet-squash,
+.opening-experience .pet-breathe,
+.opening-experience .pet-tilt {
+  position: absolute;
+  inset: 0;
+}
+
+.opening-experience .pet-squash,
+.opening-experience .pet-tilt,
+.opening-experience .pet-breathe {
+  transform-origin: 50% 100%;
+}
+
+.opening-experience .pet-breathe {
+  animation: pet-breathe 3.6s ease-in-out infinite;
+}
+
+.opening-experience .pet svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.opening-experience .pet-antenna {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: pet-sway 4.8s ease-in-out infinite;
+}
+
+.opening-experience .pet-face,
+.opening-experience .pet-eyes {
+  transition: none;
+}
+
+.opening-experience .pet-blink {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+}
+
+.opening-experience .pet-hit:disabled {
+  cursor: default;
+}
+
+.opening-experience .intro-layer:focus {
+  outline: none;
+}
+
+.opening-experience .portfolio-btn:active:not(:disabled) {
+  scale: 0.96;
+}
+
+.opening-experience .pet[data-mood="idle"] .eye-happy,
+.opening-experience .pet[data-mood="idle"] .eye-surprised,
+.opening-experience .pet[data-mood="idle"] .mouth-surprised,
+.opening-experience .pet[data-mood="happy"] .eye-idle,
+.opening-experience .pet[data-mood="happy"] .eye-surprised,
+.opening-experience .pet[data-mood="happy"] .mouth-surprised,
+.opening-experience .pet[data-mood="surprised"] .eye-idle,
+.opening-experience .pet[data-mood="surprised"] .eye-happy,
+.opening-experience .pet[data-mood="surprised"] .mouth-idle {
+  display: none;
+}
+
+@keyframes pet-breathe {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(1.012, 0.975);
+  }
+}
+
+@keyframes pet-sway {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+
+  50% {
+    transform: rotate(6deg);
+  }
+}
+
+@media (max-width: 899px) {
+  .opening-experience .pet {
+    width: 56px;
+    height: 62px;
+  }
+}
+
+/* ---- Pet speech bubble and chat --------------------------------------- */
+
+.opening-experience .pet-bubble {
+  position: fixed;
+  left: calc(var(--pet-left) + 8px);
+  bottom: calc(var(--pet-bottom) + 96px);
+  z-index: 51;
+  max-width: min(260px, calc(100vw - 40px));
+  padding: 12px 14px;
+  border-radius: 14px 14px 14px 4px;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: var(--fs-13);
+  line-height: 1.45;
+  box-shadow: var(--shadow-1);
+  transform-origin: 0% 100%;
+}
+
+.opening-experience .pet-chat {
+  position: fixed;
+  left: var(--pet-left);
+  bottom: calc(var(--pet-bottom) + 96px);
+  z-index: 51;
+  width: min(340px, calc(100vw - 28px));
+  max-height: min(480px, calc(100dvh - var(--pet-bottom) - 130px));
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: var(--r-3);
+  border: 1px solid var(--line-strong);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+  transform-origin: 10% 100%;
+}
+
+.opening-experience .pet-chat header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--fs-13);
+}
+
+.opening-experience .pet-chat .status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.opening-experience .pet-chat .status::before {
+  content: none;
+}
+
+.opening-experience .pet-chat .status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.opening-experience .pet-chat .close {
+  color: var(--ink-3);
+  font-size: 18px;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: var(--r-1);
+}
+
+.opening-experience .pet-chat .close:hover {
+  color: var(--ink);
+}
+
+.opening-experience .pet-chat header,
+.opening-experience .chips,
+.opening-experience .pet-chat form {
+  flex-shrink: 0;
+}
+
+.opening-experience .pet-chat .messages {
+  flex: 1;
+  min-height: 95px;
+  min-width: 0;
+  overscroll-behavior: contain;
+  overflow-y: auto;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: var(--fs-14);
+  line-height: 1.5;
+}
+
+.opening-experience .msg {
+  max-width: 85%;
+  overflow-wrap: anywhere;
+  padding: 9px 12px;
+  border-radius: 12px;
+}
+
+.opening-experience .msg.bot {
+  align-self: flex-start;
+  background: var(--surface-2);
+  border-bottom-left-radius: 4px;
+}
+
+.opening-experience .msg.me {
+  align-self: flex-end;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-bottom-right-radius: 4px;
+}
+
+.opening-experience .msg a {
+  display: block;
+  margin-top: 6px;
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.opening-experience .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 16px 12px;
+}
+
+.opening-experience .chips button {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  padding: 6px 11px;
+  font-size: var(--fs-12);
+  color: var(--ink-2);
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.opening-experience .chips button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.opening-experience .pet-chat form {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px 12px;
+  border-top: 1px solid var(--line);
+}
+
+.opening-experience .pet-chat input {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-2);
+  padding: 9px 12px;
+  color: var(--ink);
+  font-size: 16px;
+}
+
+@media (min-width: 640px) {
+  .opening-experience .pet-chat input {
+    font-size: var(--fs-14);
+  }
+}
+
+.opening-experience .pet-chat input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.opening-experience .pet-chat form button {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: var(--r-2);
+  padding: 0 14px;
+  font-size: var(--fs-13);
+  font-weight: 600;
+}
+
+.opening-experience .chat-disclosure {
+  padding: 0 16px 10px;
+  font-size: var(--fs-12);
+  color: var(--ink-3);
+}
+
+/* ---- Reduced motion ----------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .opening-experience .pet-breathe,
+  .opening-experience .pet-antenna {
+    animation: none;
+  }
+}
+
+html.motion-paused .opening-experience .pet-breathe,
+html.motion-paused .opening-experience .pet-antenna {
+  animation: none;
+}
+
+@media (max-width: 899px) {
+  .opening-experience .pet-bubble {
+    max-width: min(220px, calc(100vw - 40px));
+    bottom: calc(var(--pet-bottom) + 70px);
+  }
+}

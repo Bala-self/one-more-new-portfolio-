@@ -1,0 +1,25 @@
+{
+  "edition": "Consolidated (audit 2026-10-19)",
+  "date": "2026-10-19",
+  "supersedes": "Space",
+  "static_references": 148,
+  "broken_local_references": [],
+  "javascript": {
+    "files": 15,
+    "raw_bytes": 81138,
+    "gzip_bytes_summed_per_file": 29472,
+    "note": "Unminified ES modules, no third-party scripts, no CDN requests. GSAP/ScrollTrigger removed."
+  },
+  "stylesheets": {
+    "files": 9,
+    "rules_applied_home_1440": 476
+  },
+  "viewports_tested": [
+    "1440x900",
+    "1366x768",
+    "768x1024",
+    "390x844",
+    "360x800"
+  ],
+  "see": "AUDIT.md section 5 for the full PASS / FAIL / NOT TESTED checklist"
+}

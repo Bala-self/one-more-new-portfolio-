@@ -1,0 +1,829 @@
+/* ==========================================================================
+   components.css — buttons, icons, pills/tags, cards, disclosures, forms,
+   toast, image viewer, footer controls.
+   ========================================================================== */
+
+/* ---- Icons -------------------------------------------------------------- */
+
+.icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---- Buttons ------------------------------------------------------------ */
+
+.btn {
+  --btn-bg: var(--surface-2);
+  --btn-ink: var(--ink);
+  --btn-line: var(--line-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0 22px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--btn-line);
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  font-size: var(--fs-15);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    transform var(--dur-fast) ease;
+}
+
+.btn .icon,
+.btn [aria-hidden] {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.btn:hover [aria-hidden] {
+  transform: translateX(3px);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  --btn-bg: var(--accent);
+  --btn-ink: var(--accent-ink);
+  --btn-line: var(--accent);
+}
+
+.btn-primary:hover {
+  --btn-bg: var(--accent-strong);
+  --btn-line: var(--accent-strong);
+}
+
+.btn-secondary {
+  --btn-bg: transparent;
+  --btn-ink: var(--ink);
+  --btn-line: var(--line-strong);
+}
+
+.btn-secondary:hover {
+  --btn-bg: var(--surface-2);
+  --btn-line: var(--ink-3);
+}
+
+.btn-small {
+  min-height: 38px;
+  padding: 0 16px;
+  font-size: var(--fs-14);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  transform: none;
+}
+
+/* Icon-only control (menu, close). */
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-2);
+  transition:
+    color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease;
+}
+
+.icon-button:hover {
+  color: var(--ink);
+  border-color: var(--line-strong);
+  background: var(--surface-2);
+}
+
+/* Labelled pill control (footer "Back to top"). */
+.control {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-2);
+  font-size: var(--fs-13);
+  font-weight: 500;
+  transition:
+    color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease;
+}
+
+.control:hover {
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.control::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: background-color var(--dur-fast) ease;
+}
+
+.control:disabled {
+  opacity: 0.6;
+}
+
+
+/* Menu button: two bars that become an X. */
+.menu-button span {
+  position: absolute;
+  width: 16px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.menu-button span:first-child {
+  transform: translateY(-4px);
+}
+
+.menu-button span:last-child {
+  transform: translateY(4px);
+}
+
+.menu-button[aria-expanded="true"] span:first-child {
+  transform: rotate(45deg);
+}
+
+.menu-button[aria-expanded="true"] span:last-child {
+  transform: rotate(-45deg);
+}
+
+/* ---- Pills and tags ----------------------------------------------------- */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 26px;
+  padding: 0 10px;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--fs-12);
+  letter-spacing: 0.04em;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  font-size: var(--fs-13);
+  color: var(--ink-2);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-13);
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-13);
+  color: var(--ink-2);
+}
+
+.availability i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+html.motion-enabled:not(.motion-paused) .availability i {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--accent-soft);
+  }
+
+  50% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
+/* ---- Card surface ------------------------------------------------------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+}
+
+/* ---- Disclosure (details) ---------------------------------------------- */
+
+.disclosure {
+  border-top: 1px solid var(--line);
+}
+
+.disclosure summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: 14px 0;
+  font-size: var(--fs-14);
+  font-weight: 500;
+  color: var(--ink-2);
+  transition: color var(--dur-fast) ease;
+}
+
+.disclosure summary:hover {
+  color: var(--ink);
+}
+
+.disclosure summary .plus {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  color: var(--ink-3);
+}
+
+.disclosure summary .plus::before,
+.disclosure summary .plus::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 12px;
+  height: 1.5px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.disclosure summary .plus::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.disclosure[open] summary .plus::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.disclosure-body {
+  padding-bottom: var(--s-5);
+  display: grid;
+  gap: var(--s-4);
+  font-size: var(--fs-15);
+  color: var(--ink-2);
+}
+
+.disclosure-body ul {
+  display: grid;
+  gap: 6px;
+  padding-left: 1.1em;
+}
+
+.disclosure-body .hard-line {
+  padding: 12px 14px;
+  border-left: 2px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 0 var(--r-2) var(--r-2) 0;
+  color: var(--ink);
+}
+
+.disclosure-body .hard-line b {
+  color: var(--accent);
+}
+
+.proof-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-12);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.proof-strip span::before {
+  content: "◆ ";
+  color: var(--accent);
+}
+
+.feature-caption {
+  font-size: var(--fs-13);
+  color: var(--ink-3);
+}
+
+/* ---- Forms -------------------------------------------------------------- */
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field label {
+  font-size: var(--fs-13);
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.field label span {
+  color: var(--accent);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-2);
+  color: var(--ink);
+  font-size: var(--fs-16);
+  transition: border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
+}
+
+.field textarea {
+  min-height: 150px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--ink-3);
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.field input:user-invalid,
+.field textarea:user-invalid {
+  border-color: var(--danger);
+}
+
+.form-note {
+  font-size: var(--fs-13);
+  color: var(--ink-3);
+}
+
+.form-status {
+  min-height: 1.4em;
+  font-size: var(--fs-14);
+  color: var(--accent);
+}
+
+/* ---- Toast -------------------------------------------------------------- */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--s-5) + env(safe-area-inset-bottom, 0px));
+  z-index: var(--z-toast);
+  transform: translateX(-50%);
+  padding: 12px 18px;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--bg);
+  font-size: var(--fs-14);
+  font-weight: 500;
+  box-shadow: var(--shadow-1);
+}
+
+@media (max-width: 639px) {
+  .toast {
+    bottom: calc(var(--mobile-bar-h) + var(--s-4) + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ---- Image viewer (dialog) --------------------------------------------- */
+
+.image-viewer {
+  width: min(1200px, 94vw);
+  max-width: none;
+  max-height: 94dvh;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-3);
+  background: var(--surface);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.image-viewer::backdrop {
+  background: rgba(2, 4, 9, 0.82);
+}
+
+.image-viewer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: 12px 12px 12px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.image-viewer img {
+  width: 100%;
+  max-height: calc(94dvh - 120px);
+  object-fit: contain;
+  background: var(--bg);
+}
+
+.image-viewer-caption {
+  padding: 12px 18px;
+  border-top: 1px solid var(--line);
+}
+
+.image-viewer-caption:empty {
+  display: none;
+}
+
+/* ---- Brand icon (toolkit chips) ---------------------------------------- */
+
+.brand-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  background-color: currentColor;
+  -webkit-mask: var(--brand-icon) center / contain no-repeat;
+  mask: var(--brand-icon) center / contain no-repeat;
+}
+
+.skill-symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-13);
+  color: var(--accent);
+}
+
+/* ---- Social button (icon-only, matches social anchor style) ------------- */
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease,
+    transform var(--dur-fast) ease;
+}
+
+.social-btn svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.social-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  transform: translateY(-2px);
+}
+
+.social-btn:active {
+  transform: scale(0.95);
+}
+
+/* Ensure button-type mono-link renders like the anchor version */
+button.mono-link {
+  cursor: pointer;
+  text-align: center;
+  font-family: inherit;
+}
+
+/* ---- Mail Modal (dialog) ------------------------------------------------ */
+
+.mail-modal {
+  width: min(460px, 94vw);
+  max-width: none;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-3);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+  /* Entry animation */
+  opacity: 0;
+  transform: translateY(12px) scale(0.97);
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out),
+    display var(--dur-base) allow-discrete,
+    overlay var(--dur-base) allow-discrete;
+}
+
+@starting-style {
+  .mail-modal[open] {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+}
+
+.mail-modal[open] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.mail-modal::backdrop {
+  background: rgba(11, 18, 32, 0.52);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    display var(--dur-base) allow-discrete,
+    overlay var(--dur-base) allow-discrete;
+}
+
+@starting-style {
+  .mail-modal[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+.mail-modal[open]::backdrop {
+  opacity: 1;
+}
+
+.mail-modal-inner {
+  padding: var(--s-6) var(--s-6) var(--s-5);
+  display: grid;
+  gap: var(--s-5);
+}
+
+/* Head row: label+title / close */
+.mail-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-4);
+}
+
+.mail-modal-label {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--accent);
+}
+
+.mail-modal-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-24);
+  font-weight: 400;
+  color: var(--ink);
+  line-height: var(--lh-snug);
+}
+
+.mail-modal-close {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease;
+}
+
+.mail-modal-close:hover {
+  color: var(--ink);
+  background: var(--surface-2);
+  border-color: var(--line-strong);
+}
+
+.mail-modal-close svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Email address + copy row */
+.mail-email-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: 12px 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-2);
+}
+
+.mail-address {
+  font-family: var(--font-mono);
+  font-size: var(--fs-14);
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mail-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  padding: 7px 13px;
+  border-radius: var(--r-2);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: var(--fs-13);
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    transform var(--dur-fast) ease;
+}
+
+.mail-copy-btn svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+}
+
+.mail-copy-btn:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
+  color: var(--accent-strong);
+}
+
+.mail-copy-btn:active {
+  transform: scale(0.96);
+}
+
+.mail-copy-btn.copied {
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+/* Hint text */
+.mail-modal-hint {
+  margin: 0;
+  font-size: var(--fs-14);
+  color: var(--ink-3);
+}
+
+/* Option rows */
+.mail-options {
+  display: grid;
+  gap: var(--s-2);
+}
+
+.mail-option {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-2);
+  background: var(--bg);
+  color: var(--ink);
+  text-decoration: none;
+  transition:
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    transform var(--dur-fast) ease;
+}
+
+.mail-option:hover {
+  background: var(--surface-2);
+  border-color: var(--line-strong);
+  transform: translateX(3px);
+}
+
+.mail-option:active {
+  transform: scale(0.99);
+}
+
+.mail-option-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  overflow: hidden;
+  border-radius: var(--r-2);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+}
+
+.mail-option-icon svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.mail-option-text {
+  flex: 1 1 auto;
+  display: grid;
+  gap: 2px;
+}
+
+.mail-option-text b {
+  font-size: var(--fs-15);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.mail-option-text small {
+  font-size: var(--fs-13);
+  color: var(--ink-3);
+}
+
+.mail-option-arrow {
+  flex: 0 0 auto;
+  color: var(--ink-3);
+  font-size: var(--fs-16);
+  transition: transform var(--dur-base) var(--ease-out), color var(--dur-fast) ease;
+}
+
+.mail-option:hover .mail-option-arrow {
+  transform: translateX(4px);
+  color: var(--accent);
+}
+
+@media (max-width: 639px) {
+  .mail-modal-inner {
+    padding: var(--s-5) var(--s-5) var(--s-4);
+    gap: var(--s-4);
+  }
+}
+

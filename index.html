@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="2026-10-20-r8.4" name="build" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Balakrishnan M — MERN Stack Developer, Chennai</title>
+    <meta content="MERN developer in Chennai. GST billing, ordering and admin software built end to end, with the source and a case study to read." name="description" />
+    <meta content="#f6f1e8" name="theme-color" />
+    <meta content="website" property="og:type" />
+    <meta content="Balakrishnan M — MERN Stack Developer, Chennai" property="og:title" />
+    <meta content="MERN developer in Chennai. GST billing, ordering and admin software built end to end, with the source and a case study to read." property="og:description" />
+    <meta content="/assets/og.png" property="og:image" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <link href="/assets/favicon.svg" rel="icon" type="image/svg+xml" />
+    <link href="/assets/icon-192.png" rel="apple-touch-icon" />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link as="font" crossorigin href="/assets/fonts/playfair-display.woff2" rel="preload" type="font/woff2" />
+    <link as="font" crossorigin href="/assets/fonts/inter.woff2" rel="preload" type="font/woff2" />
+
+    <!-- Opening gate: hides the page until the opening experience (shooting-star
+         sky + Bit the guide, js/opening.js) has mounted so there is no flash of
+         content. Skipped for reduced motion, motion-off, deep links and embeds;
+         js/opening.js fails open after 2.5 s if it never boots. -->
+    <script>
+      (function () {
+        var root = document.documentElement;
+        try {
+          var params = new URLSearchParams(location.search);
+          if (params.has("embed")) root.classList.add("is-embedded");
+          var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+          var off = localStorage.getItem("bm-motion") === "off";
+          var nav = performance.getEntriesByType("navigation")[0];
+          var deepLink = location.hash && ["#top", "#home"].indexOf(location.hash) === -1 && (!nav || nav.type !== "reload");
+          if (reduce || off || params.has("embed") || deepLink) return;
+        } catch (e) {
+          return;
+        }
+        root.classList.add("opening-pending");
+        window.__openingFailOpen = setTimeout(function () {
+          window.__openingBootExpired = true;
+          root.classList.remove("opening-pending");
+        }, 2500);
+      })();
+    </script>
+    <style>
+      html.opening-pending { background: #05070d; }
+      html.opening-pending body { visibility: hidden; }
+      html.opening-pending .opening-experience { visibility: visible; }
+    </style>
+
+    <link href="/css/site.css" rel="stylesheet" />
+    <link href="/css/opening.css" rel="stylesheet" />
+    <link href="/css/print.css" rel="stylesheet" media="print" />
+    <script src="/js/site.js" type="module"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Balakrishnan M",
+        "jobTitle": "MERN Stack Developer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Chennai",
+          "addressRegion": "Tamil Nadu",
+          "addressCountry": "IN"
+        },
+        "sameAs": [
+          "https://github.com/Bala-self",
+          "https://www.linkedin.com/in/balakrishnan-m-509aa8423/"
+        ],
+        "email": "balakrishnan.code@email.com"
+      }
+    </script>
+    <noscript>
+      <style>
+        .js-only { display: none; }
+        [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; }
+        .project-detail-sticky { display: none; }
+        .skill-bar > i { width: var(--level) !important; }
+      </style>
+    </noscript>
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Fixed particle field on the right half of the viewport. The 4,000
+         points morph from a sphere to a helix to a grid to a torus as you
+         scroll (js/site.js → ParticleField). -->
+    <div aria-hidden="true" class="particle-field"><canvas data-field></canvas></div>
+
+    <!-- =========================================================== HEADER -->
+    <header class="site-header" data-header>
+      <div class="header-row">
+        <a aria-label="Balakrishnan M — home" class="brand" href="#home">Balakrishnan <em>M.</em></a>
+
+        <nav aria-label="Primary" class="pill-nav" data-nav>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <button aria-controls="more-menu" aria-expanded="false" class="pill-more" data-more type="button">More <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></button>
+          <a href="#contact">Contact</a>
+
+          <div class="more-menu" data-more-panel hidden id="more-menu">
+            <div class="more-tiles">
+              <a class="more-tile" href="#skills" style="--tile: #b9894a"><span class="more-tile-art"></span><span class="more-tile-copy"><b>Skills</b><small>Frontend, backend, databases and the tools in between.</small></span></a>
+              <a class="more-tile" href="#journey" style="--tile: #a86b3d"><span class="more-tile-art"></span><span class="more-tile-copy"><b>Journey</b><small>School, engineering, then the internship.</small></span></a>
+              <a class="more-tile" href="#certifications" style="--tile: #c97e66"><span class="more-tile-art"></span><span class="more-tile-copy"><b>Certifications</b><small>Two of them, both earned.</small></span></a>
+              <a class="more-tile" href="#repos" style="--tile: #8b3a3a"><span class="more-tile-art"></span><span class="more-tile-copy"><b>Code Chronicles</b><small>Repositories, in the open.</small></span></a>
+            </div>
+            <div class="more-list">
+              <a class="more-item" download href="/cv/Balakrishnan_M_MERN_Developer.pdf"><span class="more-icon">↓</span><span><b>Download CV</b><small>PDF, one page.</small></span><i>→</i></a>
+              <a class="more-item" href="/work/billpro/"><span class="more-icon">▤</span><span><b>BillPro case study</b><small>How the GST billing app was built.</small></span><i>→</i></a>
+              <a class="more-item" download href="/Balakrishnan-M.vcf"><span class="more-icon">☎</span><span><b>Save contact</b><small>.vcf for your phone.</small></span><i>→</i></a>
+            </div>
+          </div>
+        </nav>
+
+        <div class="header-actions">
+          <button class="hire" id="hire-btn" type="button" data-open-mail>Hire Me</button>
+          <button aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu" class="menu-button js-only" data-menu-open type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+        </div>
+      </div>
+    </header>
+
+    <div aria-hidden="true" class="mobile-menu" data-mobile-menu id="mobile-menu">
+      <div class="mobile-menu-head">
+        <span class="brand">Balakrishnan <em>M.</em></span>
+        <button aria-label="Close menu" class="menu-button" data-menu-close type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></svg></button>
+      </div>
+      <nav aria-label="Sections">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#journey">Journey</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#repos">Code Chronicles</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="mobile-menu-foot">
+        <button class="hire" type="button" data-open-mail>Hire Me</button>
+        <a class="ghost" download href="/cv/Balakrishnan_M_MERN_Developer.pdf">View Resume</a>
+      </div>
+    </div>
+
+    <main id="main">
+      <!-- ============================================================ HERO -->
+      <section class="hero" id="home">
+        <div class="hero-grid">
+          <div class="hero-copy" data-hero-copy>
+            <span class="eyebrow">Welcome to my portfolio</span>
+            <h1 class="hero-title">Hi, I'm <span>Balakrishnan M.</span></h1>
+            <div class="hero-typed-row">
+              <span class="hero-typed"><span data-typed></span><i class="caret"></i></span>
+            </div>
+            <p class="hero-text">I’m Balakrishnan M. I write the software that keeps a business honest: invoices that add up, stock counts that stay right, and orders that reach the right screen.</p>
+            <p class="hero-current">Currently a paid full-stack intern at Shanthi IT Solutions. <strong>Available to join immediately.</strong></p>
+            <div class="hero-actions">
+              <a class="btn-solid" href="#projects">View Work</a>
+              <a class="btn-outline" download href="/cv/Balakrishnan_M_MERN_Developer.pdf"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path></svg> View Resume</a>
+            </div>
+            <div class="socials">
+              <a aria-label="GitHub" href="https://github.com/Bala-self" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577v-2.017c-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.42-1.305.763-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.5 11.5 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.874.12 3.176.77.84 1.234 1.911 1.234 3.221 0 4.61-2.804 5.624-5.475 5.921.43.372.823 1.102.823 2.222v3.293c0 .32.192.694.801.576C20.566 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path></svg></a>
+              <a aria-label="LinkedIn" href="https://www.linkedin.com/in/balakrishnan-m-509aa8423/" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a>
+              <a aria-label="WhatsApp" href="https://wa.me/919384590539?text=Hi%20Balakrishnan%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20role." rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path></svg></a>
+              <button aria-label="Send an email" class="social-btn" type="button" data-open-mail><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 5h16v14H4V5zm0 1 8 6 8-6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+            </div>
+          </div>
+
+          <div class="hero-visual" data-hero-visual>
+            <div class="hero-blob" data-depth="26" data-float="8" data-float-speed="0.6"></div>
+            <div class="hero-ring" data-depth="18"></div>
+            <div class="hero-frame-ghost" data-depth="-10"></div>
+            <div class="hero-frame-tilt" data-depth="10" data-float="10" data-float-speed="0.8" data-tilt>
+              <figure class="hero-frame">
+                <img alt="Balakrishnan M in a navy suit, studio portrait" fetchpriority="high" height="1398" src="/assets/img/studio-portrait.webp" width="900" />
+                <span class="corner corner-tl"></span>
+                <span class="corner corner-br"></span>
+                <span class="hero-glare"></span>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="page-body">
+        <!-- ========================================================= ABOUT -->
+        <section class="section" id="about">
+          <div class="section-inner">
+            <span class="eyebrow" data-reveal>About Me</span>
+            <h2 class="h2 grad" data-reveal>A little about how I build things</h2>
+
+            <div class="bento">
+              <!-- Tile 1: trust -->
+              <div class="tile tile-trust" data-reveal>
+                <span class="tile-badge">Trust &amp; Reliability <i></i></span>
+                <div class="avatar-row">
+                  <span class="ring ring-xs"></span>
+                  <span class="ring ring-sm"></span>
+                  <span class="avatar"><span><img alt="Balakrishnan M smiling in a checked shirt" height="1092" loading="lazy" src="/assets/img/balakrishnan.webp" width="900" /></span></span>
+                  <span class="ring ring-sm"></span>
+                  <span class="ring ring-xs"></span>
+                </div>
+                <div class="tile-shade"></div>
+                <div class="tile-trust-copy">
+                  <span class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+                  <p class="tile-kicker">Trust &amp; Reliability</p>
+                  <p class="tile-lead">I keep business logic on the server, write tests for the parts that should never be a guess, and care about code another developer can understand.</p>
+                  <a class="tile-link" href="#journey">About Me <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+                </div>
+              </div>
+
+              <!-- Tile 2: tech marquee -->
+              <div class="tile tile-tech" data-reveal data-reveal-delay="1">
+                <h3 class="tile-title grad-rose">Crafting experiences powered by next-gen tech</h3>
+                <div class="marquee-rows">
+                  <div class="marquee" data-marquee>
+                    <div class="marquee-track">
+                      <span class="chip"><img alt="" src="/assets/icons/html5.svg" />HTML</span>
+                      <span class="chip"><img alt="" src="/assets/icons/css3.svg" />CSS</span>
+                      <span class="chip"><img alt="" src="/assets/icons/javascript.svg" />JavaScript</span>
+                      <span class="chip"><img alt="" src="/assets/icons/react.svg" />React</span>
+                      <span class="chip"><img alt="" src="/assets/icons/redux.svg" />Redux Toolkit</span>
+                      <span class="chip"><img alt="" src="/assets/icons/tailwind.svg" />Tailwind CSS</span>
+                      <span class="chip"><img alt="" src="/assets/icons/nextjs.svg" />Next.js</span>
+                    </div>
+                  </div>
+                  <div class="marquee" data-marquee data-reverse>
+                    <div class="marquee-track">
+                      <span class="chip"><img alt="" src="/assets/icons/mongodb.svg" />MongoDB</span>
+                      <span class="chip"><img alt="" src="/assets/icons/mongoose.svg" />Mongoose</span>
+                      <span class="chip"><img alt="" src="/assets/icons/mysql.svg" />MySQL</span>
+                      <span class="chip"><img alt="" src="/assets/icons/firebase.svg" />Firebase</span>
+                      <span class="chip"><img alt="" src="/assets/icons/nodejs.svg" />Node.js</span>
+                      <span class="chip"><img alt="" src="/assets/icons/express.svg" />Express</span>
+                      <span class="chip"><img alt="" src="/assets/icons/rest-api.svg" />REST APIs</span>
+                      <span class="chip"><img alt="" src="/assets/icons/jwt.svg" />JWT + bcrypt</span>
+                    </div>
+                  </div>
+                  <div class="marquee" data-marquee>
+                    <div class="marquee-track">
+                      <span class="chip"><img alt="" src="/assets/icons/git.svg" />Git</span>
+                      <span class="chip"><img alt="" src="/assets/icons/github.svg" />GitHub</span>
+                      <span class="chip"><img alt="" src="/assets/icons/postman.svg" />Postman</span>
+                      <span class="chip"><img alt="" src="/assets/icons/jest.svg" />Jest</span>
+                      <span class="chip"><img alt="" src="/assets/icons/supertest.svg" />Supertest</span>
+                      <span class="chip"><img alt="" src="/assets/icons/vercel.svg" />Vercel</span>
+                      <span class="chip"><img alt="" src="/assets/icons/render.svg" />Render</span>
+                      <span class="chip"><img alt="" src="/assets/icons/docker.svg" />Docker</span>
+                      <span class="chip"><img alt="" src="/assets/icons/pdfkit.svg" />PDFKit</span>
+                      <span class="chip"><img alt="" src="/assets/icons/typescript.svg" />TypeScript</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="pulse-rings"><i></i><i></i><i></i><i></i></div>
+                <div class="mini-browser">
+                  <div class="mini-browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="toggle"><i></i></span></div>
+                  <p>Software that stands out<br />and keeps the numbers honest</p>
+                  <div class="mini-browser-actions"><a href="#contact">Get in touch</a><a href="#projects">View work</a></div>
+                </div>
+              </div>
+
+              <!-- Tile 3: location -->
+              <div class="tile tile-globe" data-reveal data-reveal-delay="2">
+                <div class="globe"><span class="globe-grid"></span><span class="globe-shine"></span></div>
+                <div class="globe-pin"><i class="ping"></i><i class="pulse"></i><i class="dot"></i></div>
+                <div class="tile-globe-top">
+                  <p class="tile-italic">Based in Chennai.<br />On-site anywhere in Tamil Nadu.</p>
+                  <div class="tz-row"><span class="tz">IST <small>+05:30</small></span><span class="tz tz-active">Chennai <i></i></span><span class="tz">Tamil Nadu</span></div>
+                </div>
+                <div class="tile-globe-foot">
+                  <div>
+                    <span class="tile-icon round"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"></path></svg></span>
+                    <p class="tile-small">Immediate joiner</p>
+                    <p class="tile-big">India</p>
+                  </div>
+                  <a class="pill-link" href="#contact">Connect now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+                </div>
+              </div>
+
+              <!-- Tile 4: CTA -->
+              <div class="tile tile-cta" data-reveal data-reveal-delay="2">
+                <div class="stars"><i style="top:10%;left:10%"></i><i style="top:18%;left:80%"></i><i style="top:70%;left:14%"></i><i style="top:82%;left:86%"></i><i style="top:45%;left:6%"></i><i style="top:28%;left:40%"></i><i style="top:58%;left:70%"></i><i style="top:88%;left:45%"></i><i style="top:8%;left:55%"></i><i style="top:75%;left:62%"></i><i style="top:35%;left:92%"></i><i style="top:62%;left:28%"></i></div>
+                <p class="tile-italic glow-text">Let's work together<br />on your next project</p>
+                <button class="mono-link" type="button" data-open-mail>balakrishnan.code@email.com <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></button>
+              </div>
+
+              <!-- Tile 5: workspace marquee -->
+              <div class="tile tile-workspace" data-reveal data-reveal-delay="3">
+                <div class="workspace-marquee" data-marquee>
+                  <div class="marquee-track">
+                    <div class="ws-card"><i></i><p>Full-stack MERN</p><small>React in front, Node + Express behind, MongoDB underneath.</small></div>
+                    <div class="ws-card"><i></i><p>Billing logic</p><small>GST maths in one module that invoices, purchases and quotations all call.</small></div>
+                    <div class="ws-card"><i></i><p>REST APIs</p><small>JWT, bcrypt, Helmet, rate limiting and server-side validation.</small></div>
+                    <div class="ws-card"><i></i><p>Testing</p><small>Jest + Supertest for the parts that should never be a guess.</small></div>
+                    <div class="ws-card"><i></i><p>Deployment</p><small>Vercel and Render, with Firebase where the project calls for it.</small></div>
+                    <div class="ws-card"><i></i><p>Responsive UI</p><small>Hand-written, mobile-first layouts that read on a 320px phone.</small></div>
+                  </div>
+                </div>
+                <div class="tile-shade-up"></div>
+                <div class="tile-workspace-foot">
+                  <div>
+                    <span class="tile-icon square"><svg viewBox="0 0 24 24"><rect height="14" rx="2" width="18" x="3" y="4"></rect><path d="M8 20h8M12 18v2"></path></svg></span>
+                    <p class="tile-kicker">Inside My Workspace</p>
+                    <p class="tile-strong">Currently building BillPro and interning at Shanthi IT Solutions</p>
+                  </div>
+                  <div class="tile-actions">
+                    <a class="btn-solid small" href="#projects">Projects <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+                    <a class="btn-outline small" download href="/cv/Balakrishnan_M_MERN_Developer.pdf">Resume</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================== PROJECTS -->
+        <section class="section section-projects" id="projects">
+          <div class="section-inner">
+            <span class="eyebrow" data-reveal>Selected Work</span>
+            <h2 class="h2 grad" data-reveal>Projects I've built</h2>
+
+            <div class="projects-grid" data-projects>
+              <div class="projects-cards">
+                <!-- 01 BillPro -->
+                <div class="project-block" data-project="0" id="billpro" style="--accent: #a86b3d; --card-a: #f1dfc6; --card-b: #e2c399; --card-c: #f7ecd9">
+                  <article class="project-card" data-reveal>
+                    <div class="project-card-glow"></div>
+                    <div class="project-card-top">
+                      <p class="project-tag">Invoices, purchases, stock and reports for a GST-registered business, kept in one place.</p>
+                      <div class="project-icons">
+                        <a aria-label="BillPro source on GitHub" href="https://github.com/Bala-self/billing-software" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577v-2.017c-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.42-1.305.763-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.5 11.5 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.874.12 3.176.77.84 1.234 1.911 1.234 3.221 0 4.61-2.804 5.624-5.475 5.921.43.372.823 1.102.823 2.222v3.293c0 .32.192.694.801.576C20.566 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path></svg></a>
+                        <a aria-label="BillPro case study" href="/work/billpro/"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7V16" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+                      </div>
+                    </div>
+                    <div class="project-shot">
+                      <div class="project-shot-halo"></div>
+                      <a aria-label="Enlarge BillPro screenshot" data-lightbox href="/assets/img/billpro.webp"><img alt="BillPro — GST Billing application screenshot" height="500" loading="lazy" sizes="(max-width: 767px) 92vw, 560px" src="/assets/img/billpro-800.webp" srcset="/assets/img/billpro-400.webp 400w, /assets/img/billpro-800.webp 800w" width="800" /></a>
+                    </div>
+                  </article>
+                  <div class="project-detail project-detail-inline" data-reveal>
+                    <div class="project-detail-head"><span class="project-rule"></span><span class="project-label">Project</span><a class="project-live" href="/work/billpro/">Case study <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7V16"></path></svg></a></div>
+                    <h3>BillPro — GST Billing</h3>
+                    <p>Invoices, purchases, stock and reports for a GST-registered business, kept in one place. Source available; a public demo is next.</p>
+                    <ul>
+                      <li>16+ REST modules with JWT, bcrypt, Helmet and rate limiting.</li>
+                      <li>Server-validated stock, movement history and PDFKit invoices.</li>
+                      <li>Jest + Supertest, indexed queries and aggregation reports.</li>
+                      <li>The GST maths started out in three places. It now lives in one module that invoices, purchases and quotations all call.</li>
+                    </ul>
+                    <div class="project-tags"><span>MongoDB</span><span>Express</span><span>React</span><span>Node.js</span><span>PDFKit</span><span>Jest</span></div>
+                  </div>
+                </div>
+
+                <!-- 02 Pizza Palace -->
+                <div class="project-block" data-project="1" id="pizza-palace" style="--accent: #8b3a3a; --card-a: #f0d6cf; --card-b: #d9a79c; --card-c: #f8e9e4">
+                  <article class="project-card" data-reveal>
+                    <div class="project-card-glow"></div>
+                    <div class="project-card-top">
+                      <p class="project-tag">Menu, cart and checkout out front; an admin screen that moves each order from preparing to delivered.</p>
+                      <div class="project-icons">
+                        <a aria-label="Pizza Palace source on GitHub" href="https://github.com/Bala-self/pizza-palace" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577v-2.017c-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.42-1.305.763-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.5 11.5 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.874.12 3.176.77.84 1.234 1.911 1.234 3.221 0 4.61-2.804 5.624-5.475 5.921.43.372.823 1.102.823 2.222v3.293c0 .32.192.694.801.576C20.566 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path></svg></a>
+                        <a aria-label="Pizza Palace live demo" href="https://pizza-palace-lake.vercel.app/" rel="noopener noreferrer" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7V16" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+                      </div>
+                    </div>
+                    <div class="project-shot">
+                      <div class="project-shot-halo"></div>
+                      <a aria-label="Enlarge Pizza Palace screenshot" data-lightbox href="/assets/img/pizza.webp"><img alt="Pizza Palace application screenshot" height="500" loading="lazy" sizes="(max-width: 767px) 92vw, 560px" src="/assets/img/pizza-800.webp" srcset="/assets/img/pizza-400.webp 400w, /assets/img/pizza-800.webp 800w" width="800" /></a>
+                    </div>
+                  </article>
+                  <div class="project-detail project-detail-inline" data-reveal>
+                    <div class="project-detail-head"><span class="project-rule"></span><span class="project-label">Project</span><a class="project-live" href="https://pizza-palace-lake.vercel.app/" rel="noopener noreferrer" target="_blank">Live Demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7V16"></path></svg></a></div>
+                    <h3>Pizza Palace</h3>
+                    <p>Menu, cart and checkout out front; behind it, an admin screen that moves each order from preparing to delivered.</p>
+                    <ul>
+                      <li>Menu, cart and customer ordering flow.</li>
+                      <li>Protected admin routes with role-based access.</li>
+                      <li>Order status updates from preparing to delivered.</li>
+                      <li>The admin routes are guarded on the server, not just hidden in the interface.</li>
+                    </ul>
+                    <div class="project-tags"><span>React</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>JWT</span></div>
+                  </div>
+                </div>
+
+                <!-- 03 KADAI -->
+                <div class="project-block" data-project="2" id="kadai" style="--accent: #b9894a; --card-a: #f3e4cb; --card-b: #e5cb9f; --card-c: #faf1e1">
+                  <article class="project-card" data-reveal>
+                    <div class="project-card-glow"></div>
+                    <div class="project-card-top">
+                      <p class="project-tag">Product discovery, cart and cash-on-delivery orders, with customer and admin workflows.</p>
+                      <div class="project-icons">
+                        <a aria-label="KADAI source on GitHub" href="https://github.com/Bala-self/ecommeres-website-using-firebase" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577v-2.017c-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.42-1.305.763-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.5 11.5 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.874.12 3.176.77.84 1.234 1.911 1.234 3.221 0 4.61-2.804 5.624-5.475 5.921.43.372.823 1.102.823 2.222v3.293c0 .32.192.694.801.576C20.566 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path></svg></a>
+                      </div>
+                    </div>
+                    <div class="project-shot">
+                      <div class="project-shot-halo"></div>
+                      <a aria-label="Enlarge KADAI screenshot" data-lightbox href="/assets/img/kadai.webp"><img alt="KADAI — Online Store application screenshot" height="500" loading="lazy" sizes="(max-width: 767px) 92vw, 560px" src="/assets/img/kadai-800.webp" srcset="/assets/img/kadai-400.webp 400w, /assets/img/kadai-800.webp 800w" width="800" /></a>
+                    </div>
+                  </article>
+                  <div class="project-detail project-detail-inline" data-reveal>
+                    <div class="project-detail-head"><span class="project-rule"></span><span class="project-label">Project</span><span class="project-note">Firebase setup required</span></div>
+                    <h3>KADAI — Online Store</h3>
+                    <p>Product discovery, cart and cash-on-delivery orders, with customer and admin workflows. No framework — the interface, the data layer and the rules are split by hand.</p>
+                    <ul>
+                      <li>Product search, cart, wishlist and customer accounts.</li>
+                      <li>Cash-on-delivery checkout and order history.</li>
+                      <li>Product and order administration with Firestore rules.</li>
+                      <li>No framework, so I split the interface, the data layer and the rules myself and kept each one testable.</li>
+                    </ul>
+                    <div class="project-tags"><span>JavaScript</span><span>Firebase</span><span>Firestore</span><span>Tailwind CSS</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Desktop: the sticky detail panel mirrors whichever card is in the middle of the viewport. -->
+              <aside aria-hidden="true" class="project-detail-sticky" data-project-sticky></aside>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================================================== SKILLS -->
+        <section class="section" id="skills">
+          <div class="section-inner">
+            <span class="eyebrow" data-reveal="slide">Skills</span>
+            <h2 class="h2 grad" data-reveal="slide">What I work with</h2>
+
+            <div class="skills-grid">
+              <div class="skill-card" data-reveal style="--accent: #b9894a">
+                <div class="skill-card-head"><h3 class="grad-accent">Frontend</h3><span class="skill-level">Daily</span></div>
+                <div class="skill-bar" style="--level: 92%"><i></i></div>
+                <div class="skill-chips">
+                  <span><img alt="" src="/assets/icons/html5.svg" />HTML</span><span><img alt="" src="/assets/icons/css3.svg" />CSS</span><span><img alt="" src="/assets/icons/javascript.svg" />JavaScript</span><span><img alt="" src="/assets/icons/react.svg" />React</span><span><img alt="" src="/assets/icons/redux.svg" />Redux Toolkit</span><span><img alt="" src="/assets/icons/tailwind.svg" />Tailwind CSS</span><span><img alt="" src="/assets/icons/nextjs.svg" />Next.js</span>
+                </div>
+              </div>
+              <div class="skill-card" data-reveal data-reveal-delay="1" style="--accent: #c97e66">
+                <div class="skill-card-head"><h3 class="grad-accent">Backend &amp; APIs</h3><span class="skill-level">Daily</span></div>
+                <div class="skill-bar" style="--level: 90%"><i></i></div>
+                <div class="skill-chips">
+                  <span><img alt="" src="/assets/icons/nodejs.svg" />Node.js</span><span><img alt="" src="/assets/icons/express.svg" />Express</span><span><img alt="" src="/assets/icons/rest-api.svg" />REST APIs</span><span><img alt="" src="/assets/icons/jwt.svg" />JWT</span><span><img alt="" src="/assets/icons/bcrypt.svg" />bcrypt</span><span><img alt="" src="/assets/icons/pdfkit.svg" />PDFKit</span>
+                </div>
+              </div>
+              <div class="skill-card" data-reveal data-reveal-delay="2" style="--accent: #a86b3d">
+                <div class="skill-card-head"><h3 class="grad-accent">Databases</h3><span class="skill-level">Daily</span></div>
+                <div class="skill-bar" style="--level: 86%"><i></i></div>
+                <div class="skill-chips">
+                  <span><img alt="" src="/assets/icons/mongodb.svg" />MongoDB</span><span><img alt="" src="/assets/icons/mongoose.svg" />Mongoose</span><span><img alt="" src="/assets/icons/mysql.svg" />MySQL</span><span><img alt="" src="/assets/icons/firebase.svg" />Firebase / Firestore</span>
+                </div>
+              </div>
+              <div class="skill-card" data-reveal data-reveal-delay="3" style="--accent: #8b3a3a">
+                <div class="skill-card-head"><h3 class="grad-accent">Tools, testing &amp; deployment</h3><span class="skill-level">Comfortable</span></div>
+                <div class="skill-bar" style="--level: 70%"><i></i></div>
+                <div class="skill-chips">
+                  <span><img alt="" src="/assets/icons/git.svg" />Git + GitHub</span><span><img alt="" src="/assets/icons/postman.svg" />Postman</span><span><img alt="" src="/assets/icons/jest.svg" />Jest + Supertest</span><span><img alt="" src="/assets/icons/vercel.svg" />Vercel</span><span><img alt="" src="/assets/icons/render.svg" />Render</span>
+                </div>
+              </div>
+              <div class="skill-card" data-reveal data-reveal-delay="4" style="--accent: #c9a876">
+                <div class="skill-card-head"><h3 class="grad-accent">Learning now</h3><span class="skill-level">On the desk</span></div>
+                <div class="skill-bar" style="--level: 38%"><i></i></div>
+                <div class="skill-chips">
+                  <span><img alt="" src="/assets/icons/typescript.svg" />TypeScript</span><span><img alt="" src="/assets/icons/nextjs.svg" />Next.js App Router</span><span><img alt="" src="/assets/icons/docker.svg" />Docker</span>
+                </div>
+              </div>
+              <div class="skill-card skill-card-note" data-reveal data-reveal-delay="5" style="--accent: #b9894a">
+                <div class="skill-card-head"><h3 class="grad-accent">AI in the loop</h3><span class="skill-level">Daily</span></div>
+                <div class="skill-bar" style="--level: 80%"><i></i></div>
+                <p class="skill-note">I use Claude and GitHub Copilot for scaffolding and review. I own everything that ships.</p>
+                <div class="skill-chips"><span><img alt="" src="/assets/icons/claude.svg" />Claude</span><span><img alt="" src="/assets/icons/githubcopilot.svg" />GitHub Copilot</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================================================= JOURNEY -->
+        <section class="section" id="journey">
+          <div class="section-inner">
+            <span class="eyebrow" data-reveal>Journey</span>
+            <h2 class="h2 grad" data-reveal>Education</h2>
+
+            <div class="timeline" data-timeline>
+              <div class="timeline-track"></div>
+              <div class="timeline-progress" data-timeline-progress></div>
+
+              <div class="timeline-row">
+                <span class="timeline-dot"></span>
+                <div class="timeline-side timeline-left"><div class="timeline-card" data-reveal>
+                  <div class="timeline-head">
+                    <a aria-label="Dhanalakshmi Srinivasan Engineering College — official website" class="timeline-logo" href="https://www.dsengg.ac.in/" rel="noopener noreferrer" target="_blank"><img alt="Dhanalakshmi Srinivasan Engineering College crest" height="100" loading="lazy" src="/assets/img/logo-dsec.png" width="118" /></a>
+                    <p class="timeline-year">2021 – 2025</p>
+                  </div>
+                  <h3 class="grad-accent">B.E., Robotics and Automation</h3>
+                  <p class="timeline-place"><a href="https://www.dsengg.ac.in/" rel="noopener noreferrer" target="_blank">Dhanalakshmi Srinivasan Engineering College <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7V16"></path></svg></a>, Perambalur, Tamil Nadu</p>
+                  <p class="timeline-score">CGPA: 7.4 / 10 · First Class</p>
+                  <p class="timeline-note">Engineering years. Studied systems end to end, then brought that systems-thinking mindset to the web.</p>
+                </div></div>
+                <div class="timeline-side"></div>
+              </div>
+
+              <div class="timeline-row">
+                <span class="timeline-dot"></span>
+                <div class="timeline-side"></div>
+                <div class="timeline-side timeline-right"><div class="timeline-card" data-reveal>
+                  <div class="timeline-head">
+                    <a aria-label="Vetri Vidhyalaya Higher Secondary School — search on Google" class="timeline-logo timeline-logo-mono" href="https://www.google.com/search?q=Vetri+Vidhyalaya+Higher+Secondary+School+E.+Vellanur+Lalgudi+Trichy" rel="noopener noreferrer" target="_blank"><span>V</span></a>
+                    <p class="timeline-year">2021</p>
+                  </div>
+                  <h3 class="grad-accent">Class XII · Computer Science group</h3>
+                  <p class="timeline-place"><a href="https://www.google.com/search?q=Vetri+Vidhyalaya+Higher+Secondary+School+E.+Vellanur+Lalgudi+Trichy" rel="noopener noreferrer" target="_blank">Vetri Vidhyalaya Higher Secondary School <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7V16"></path></svg></a>, E. Vellanur, Lalgudi, Tiruchirappalli</p>
+                  <p class="timeline-score">Percentage: 70%</p>
+                  <p class="timeline-note">The next chapter — the Computer Science group, and the first real programming.</p>
+                </div></div>
+              </div>
+
+              <div class="timeline-row">
+                <span class="timeline-dot"></span>
+                <div class="timeline-side timeline-left"><div class="timeline-card" data-reveal>
+                  <div class="timeline-head">
+                    <a aria-label="Dalmia Higher Secondary School, Dalmiapuram — search on Google" class="timeline-logo timeline-logo-mono" href="https://www.google.com/search?q=Dalmia+Higher+Secondary+School+Dalmiapuram+Kallakudi+Trichy" rel="noopener noreferrer" target="_blank"><span>D</span></a>
+                    <p class="timeline-year">2019</p>
+                  </div>
+                  <h3 class="grad-accent">Class X</h3>
+                  <p class="timeline-place"><a href="https://www.google.com/search?q=Dalmia+Higher+Secondary+School+Dalmiapuram+Kallakudi+Trichy" rel="noopener noreferrer" target="_blank">Dalmia Higher Secondary School <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7V16"></path></svg></a>, Dalmiapuram, Tiruchirappalli</p>
+                  <p class="timeline-score">Percentage: 60%</p>
+                  <p class="timeline-note">The foundation.</p>
+                </div></div>
+                <div class="timeline-side"></div>
+              </div>
+            </div>
+
+            <div class="experience-block">
+              <span class="eyebrow" data-reveal>Journey</span>
+              <h2 class="h2 grad" data-reveal>Experience</h2>
+
+              <article class="xp-card" data-reveal>
+                <div class="xp-head"><span class="xp-icon"><svg viewBox="0 0 24 24"><rect height="13" rx="2" width="18" x="3" y="7"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"></path></svg></span><p class="xp-date">Aug 2026 — Present</p><span class="xp-status">Ongoing</span></div>
+                <h3 class="grad-accent">Full Stack Development Intern</h3>
+                <p class="xp-org">Shanthi IT Solutions</p>
+                <p class="xp-copy">Ongoing paid full-stack internship. Hands-on development alongside my independent projects. Immediate joiner.</p>
+              </article>
+              <article class="xp-card" data-reveal data-reveal-delay="1">
+                <div class="xp-head"><span class="xp-icon"><svg viewBox="0 0 24 24"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"></path></svg></span><p class="xp-date">Jun 2026 — Present</p></div>
+                <h3 class="grad-accent">Independent MERN Developer</h3>
+                <p class="xp-org">React · Node.js · Express · MongoDB</p>
+                <p class="xp-copy">Building applications end to end, from data models and authentication to the final interface — BillPro (GST billing, inventory and reporting), Pizza Palace (ordering and admin workflows), API testing, deployment and readable code.</p>
+              </article>
+              <article class="xp-card" data-reveal data-reveal-delay="2">
+                <div class="xp-head"><span class="xp-icon"><svg viewBox="0 0 24 24"><rect height="16" rx="2" width="20" x="2" y="4"></rect><path d="M2 9h20M7 14h6"></path></svg></span><p class="xp-date">Feb — Mar 2026</p></div>
+                <h3 class="grad-accent">Frontend UI Developer</h3>
+                <p class="xp-org">Self-directed · TripAdvisor UI</p>
+                <p class="xp-copy">A responsive travel homepage built from scratch — eight dense sections, hand-written mobile-first CSS and interaction details, no frontend framework. <a href="https://bala-self.github.io/tripadvisor.com/" rel="noopener noreferrer" target="_blank">View the live page ↗</a></p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================ CERTIFICATIONS -->
+        <div class="cert-section" data-cert-section id="certifications">
+          <div class="cert-container section-inner">
+            <span class="eyebrow" data-reveal>Certifications</span>
+            <h2 class="h2 grad" data-reveal>Two of them, both earned</h2>
+            <div class="cert-flex" data-cert-flex>
+              <div class="cert-box" data-reveal>
+                <div class="cert-box-top"><span class="cert-number grad-accent">01</span><div><h3>4-Month Full Stack MERN Bootcamp</h3><p>EMC · 23 June 2026</p></div></div>
+                <a aria-label="Enlarge MERN Bootcamp certificate" class="cert-media" data-lightbox href="/certificates/cert-mern-bootcamp.png"><img alt="EMC 4-Month Full Stack MERN Bootcamp certificate awarded to Balakrishnan M" height="396" loading="lazy" src="/assets/img/cert-mern-bootcamp.webp" width="560" /></a>
+                <p class="cert-desc">MongoDB, Express, React and Node.js — the stack behind BillPro and Pizza Palace.</p>
+                <a class="cert-link" data-lightbox href="/certificates/cert-mern-bootcamp.png">View certificate ↗</a>
+              </div>
+              <div class="cert-box" data-reveal data-reveal-delay="1">
+                <div class="cert-box-top"><span class="cert-number grad-accent">02</span><div><h3>Prompt Engineering</h3><p>EMC · Additional certification</p></div></div>
+                <a aria-label="Enlarge Prompt Engineering certificate" class="cert-media" data-lightbox href="/certificates/cert-prompt-engineering.png"><img alt="Prompt Engineering certificate awarded to Balakrishnan M" height="396" loading="lazy" src="/assets/img/cert-prompt-engineering.webp" width="560" /></a>
+                <p class="cert-desc">Original certificate available to view.</p>
+                <a class="cert-link" data-lightbox href="/certificates/cert-prompt-engineering.png">View certificate ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================= REPOS -->
+        <section class="section repos-section" id="repos">
+          <div class="section-inner">
+            <span class="eyebrow" data-reveal>Learning in Public</span>
+            <h2 class="h2 repos-title" data-reveal>Code <em>Chronicles</em></h2>
+            <p class="section-sub" data-reveal>A running log of what I'm building — the repositories behind the projects above, in the open.</p>
+            <div class="repo-grid">
+              <a class="repo-card" data-reveal href="https://github.com/Bala-self/billing-software" rel="noopener noreferrer" target="_blank">
+                <div class="repo-top"><svg class="gh-icon" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577v-2.017c-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.42-1.305.763-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.5 11.5 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.874.12 3.176.77.84 1.234 1.911 1.234 3.221 0 4.61-2.804 5.624-5.475 5.921.43.372.823 1.102.823 2.222v3.293c0 .32.192.694.801.576C20.566 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path></svg><span class="repo-arrow">↗</span></div>
+                <div class="repo-name">billing-software</div>
+                <div class="repo-desc">BillPro — GST billing, purchases, stock and reports. 16+ REST modules, PDFKit invoices, Jest + Supertest.</div>
+                <div class="repo-tag">MERN · Billing</div>
+              </a>
+              <a class="repo-card" data-reveal data-reveal-delay="1" href="https://github.com/Bala-self/pizza-palace" rel="noopener noreferrer" target="_blank">
+                <div class="repo-top"><svg class="gh-icon" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577v-2.017c-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.42-1.305.763-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.5 11.5 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.874.12 3.176.77.84 1.234 1.911 1.234 3.221 0 4.61-2.804 5.624-5.475 5.921.43.372.823 1.102.823 2.222v3.293c0 .32.192.694.801.576C20.566 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path></svg><span class="repo-arrow">↗</span></div>
+                <div class="repo-name">pizza-palace</div>
+                <div class="repo-desc">Ordering flow with cart and checkout, plus server-guarded admin routes that move orders from preparing to delivered.</div>
+                <div class="repo-tag">MERN · Ordering</div>
+              </a>
+              <a class="repo-card" data-reveal data-reveal-delay="2" href="https://github.com/Bala-self/tripadvisor.com" rel="noopener noreferrer" target="_blank">
+                <div class="repo-top"><svg class="gh-icon" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577v-2.017c-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.42-1.305.763-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.5 11.5 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.874.12 3.176.77.84 1.234 1.911 1.234 3.221 0 4.61-2.804 5.624-5.475 5.921.43.372.823 1.102.823 2.222v3.293c0 .32.192.694.801.576C20.566 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path></svg><span class="repo-arrow">↗</span></div>
+                <div class="repo-name">tripadvisor.com</div>
+                <div class="repo-desc">Frontend practice — an eight-section travel homepage in hand-written HTML, CSS and JavaScript that still reads on a 320px phone.</div>
+                <div class="repo-tag">HTML · CSS · JavaScript</div>
+              </a>
+            </div>
+            <div class="view-more-row" data-reveal><a class="view-more" href="https://github.com/Bala-self?tab=repositories" rel="noopener noreferrer" target="_blank">View More →</a></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ======================================================== CONTACT -->
+      <section class="contact" id="contact">
+        <div class="contact-big" data-reveal>
+          <h2 class="grad left">LET'S</h2>
+          <h2 class="grad center">GET IN</h2>
+          <h2 class="grad left">TOUCH</h2>
+          <div class="contact-elsewhere">
+            <p>Based in Chennai, Tamil Nadu · Immediate joiner · On-site anywhere in Tamil Nadu</p>
+            <p class="eyebrow">Elsewhere</p>
+            <div class="socials">
+              <button aria-label="Send an email" class="social-btn" type="button" data-open-mail><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 5h16v14H4V5zm0 1 8 6 8-6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+              <a aria-label="GitHub" href="https://github.com/Bala-self" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577v-2.017c-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.42-1.305.763-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.5 11.5 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.874.12 3.176.77.84 1.234 1.911 1.234 3.221 0 4.61-2.804 5.624-5.475 5.921.43.372.823 1.102.823 2.222v3.293c0 .32.192.694.801.576C20.566 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path></svg></a>
+              <a aria-label="LinkedIn" href="https://www.linkedin.com/in/balakrishnan-m-509aa8423/" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a>
+              <a aria-label="WhatsApp" href="https://wa.me/919384590539?text=Hi%20Balakrishnan%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20role." rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path></svg></a>
+              <a aria-label="Call +91 93845 90539" href="tel:+919384590539"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-spacer"></div>
+          <div class="contact-form-wrap" data-reveal>
+            <span class="eyebrow">Contact</span>
+            <h2 class="h2 grad contact-mobile-title">Let's work together</h2>
+            <p class="contact-lead">Hiring a MERN developer? Tell me about your team.</p>
+
+            <form action="mailto:balakrishnan.code@email.com" class="contact-form" id="contact-form" method="get">
+              <div class="form-two">
+                <div class="field"><label for="contact-name">Full Name</label><input autocomplete="name" id="contact-name" maxlength="100" name="name" placeholder="Your name" required /></div>
+                <div class="field"><label for="contact-company">Company</label><input autocomplete="organization" id="contact-company" maxlength="150" name="company" placeholder="Your company or team" /></div>
+              </div>
+              <div class="field"><label for="contact-email">Email</label><input autocomplete="email" id="contact-email" maxlength="254" name="email" placeholder="name@company.com" required type="email" /></div>
+              <div class="field"><label for="contact-message">Message</label><textarea id="contact-message" maxlength="4000" name="message" placeholder="A little about the role, project or conversation…" required rows="5"></textarea></div>
+              <div class="form-foot">
+                <p>Opens a draft in your mail app. Nothing is sent from this page.</p>
+                <div class="form-buttons">
+                  <button class="copy-button js-only" data-copy-message type="button">Copy message</button>
+                  <button aria-label="Open email draft" class="send-button" type="submit"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></button>
+                </div>
+              </div>
+              <p aria-live="polite" class="form-status" id="form-status" role="status"></p>
+            </form>
+            <p class="signature">Balakrishnan M</p>
+
+            <div class="contact-elsewhere contact-elsewhere-mobile">
+              <p>Based in Chennai, Tamil Nadu · Immediate joiner</p>
+              <p class="eyebrow">Elsewhere</p>
+              <div class="socials">
+                <button aria-label="Send an email" class="social-btn" type="button" data-open-mail><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 5h16v14H4V5zm0 1 8 6 8-6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+                <a aria-label="GitHub" href="https://github.com/Bala-self" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577v-2.017c-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.42-1.305.763-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.5 11.5 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.874.12 3.176.77.84 1.234 1.911 1.234 3.221 0 4.61-2.804 5.624-5.475 5.921.43.372.823 1.102.823 2.222v3.293c0 .32.192.694.801.576C20.566 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path></svg></a>
+                <a aria-label="LinkedIn" href="https://www.linkedin.com/in/balakrishnan-m-509aa8423/" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a>
+                <a aria-label="WhatsApp" href="https://wa.me/919384590539?text=Hi%20Balakrishnan%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20role." rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Balakrishnan M · Built by hand with HTML, CSS &amp; JavaScript</p>
+      <nav aria-label="Footer links">
+        <a download href="/cv/Balakrishnan_M_MERN_Developer.pdf">Download CV</a>
+        <a download href="/Balakrishnan-M.vcf">Save contact (.vcf)</a>
+        <a href="tel:+919384590539">+91 93845 90539</a>
+        <a href="#top">Back to top ↑</a>
+      </nav>
+    </footer>
+
+    <div aria-live="polite" class="toast" hidden role="status"></div>
+
+    <!-- ============================================================= MAIL MODAL -->
+    <dialog aria-labelledby="mail-modal-title" class="mail-modal" id="mail-modal">
+      <div class="mail-modal-inner">
+        <div class="mail-modal-head">
+          <div>
+            <span class="mail-modal-label eyebrow">Direct Contact</span>
+            <h2 class="mail-modal-title" id="mail-modal-title">Send an Email</h2>
+          </div>
+          <button aria-label="Close" class="mail-modal-close" id="mail-modal-close" type="button">
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+        </div>
+
+        <div class="mail-email-row">
+          <span class="mail-address" id="mail-address-display">balakrishnan.code@email.com</span>
+          <button class="mail-copy-btn" id="mail-copy-btn" type="button">
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span aria-live="polite" data-copy-label>Copy</span>
+          </button>
+        </div>
+
+        <p class="mail-modal-hint">Choose how you would like to open your mailbox:</p>
+
+        <div class="mail-options">
+          <a class="mail-option" href="" id="mail-gmail" rel="noopener noreferrer" target="_blank">
+            <span class="mail-option-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M2 5.5C2 4.67 2.67 4 3.5 4h17c.83 0 1.5.67 1.5 1.5v13c0 .83-.67 1.5-1.5 1.5h-17C2.67 20 2 19.33 2 18.5v-13Z" fill="#fff" stroke="#e0e0e0"/><path d="M2 6l10 7 10-7" stroke="none"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2 6.5l10 7 10-7V5.5L12 12.5 2 5.5v1Z" fill="#EA4335"/><path d="M2 18.5V6.5l10 7 10-7v12" stroke="none"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2 6.5v12h5.5v-7.8L12 13.5l4.5-2.8V18.5H22v-12l-10 7-10-7Z" fill="#34A853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2 6.5v12H7.5v-7.8L2 6.5Z" fill="#FBBC05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M22 6.5v12h-5.5v-7.8L22 6.5Z" fill="#4285F4"/></svg>
+            </span>
+            <span class="mail-option-text">
+              <b>Open in Gmail</b>
+              <small>Opens compose directly in a new tab</small>
+            </span>
+            <span class="mail-option-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="mail-option" href="" id="mail-outlook" rel="noopener noreferrer" target="_blank">
+            <span class="mail-option-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="2" fill="#0078D4"/><path d="M13 5h7a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-7V5Z" fill="#50A3E0"/><path d="M20 8.5l-7 4-7-4" stroke="#fff" stroke-width="1.2"/><rect x="3" y="5" width="11" height="14" rx="1" fill="#0078D4"/><path d="M7.5 9.5a3 3 0 1 0 0 5 3 3 0 0 0 0-5Z" fill="#fff"/></svg>
+            </span>
+            <span class="mail-option-text">
+              <b>Open in Outlook Web</b>
+              <small>Hotmail / Outlook web compose tab</small>
+            </span>
+            <span class="mail-option-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="mail-option" href="" id="mail-default">
+            <span class="mail-option-icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 5h16v14H4V5zm0 1 8 6 8-6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </span>
+            <span class="mail-option-text">
+              <b>Default Mail App</b>
+              <small>Windows Mail, Apple Mail, Thunderbird</small>
+            </span>
+            <span class="mail-option-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog aria-label="Project screenshot" class="image-viewer">
+      <div class="image-viewer-head">
+        <p class="mono">Detail</p>
+        <button aria-label="Close screenshot" class="menu-button image-close" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></svg></button>
+      </div>
+      <img alt="" />
+      <p class="image-viewer-caption mono"></p>
+    </dialog>
+  </body>
+</html>

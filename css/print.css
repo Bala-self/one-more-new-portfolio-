@@ -1,0 +1,134 @@
+/* ==========================================================================
+   print.css — a readable, ink-friendly print of the portfolio.
+   ========================================================================== */
+
+@media print {
+  :root {
+    --bg: #fff;
+    --bg-raised: #fff;
+    --surface: #fff;
+    --surface-2: #f3f3f3;
+    --ink: #111;
+    --ink-2: #333;
+    --ink-3: #555;
+    --accent: #0a6b5a;
+    --accent-ink: #fff;
+    --line: #ccc;
+    --line-strong: #999;
+  }
+
+  html,
+  body {
+    background: #fff;
+    color: #111;
+  }
+
+  .sky,
+  .scroll-progress,
+  .section-rail,
+  .mobile-bar,
+  .menu-panel,
+  .menu-button,
+  .header-actions,
+  .space-cursor,
+  .opening-experience,
+  .toast,
+  .image-viewer,
+  .footer-controls,
+  .screen-link,
+  .work-no,
+  .skip-link {
+    display: none !important;
+  }
+
+  .site-header {
+    position: static;
+    height: auto;
+    border-bottom: 1px solid #ccc;
+    padding-block: 12px;
+  }
+
+  .primary-nav {
+    display: none;
+  }
+
+  .section {
+    padding-block: 28px;
+    break-inside: avoid;
+  }
+
+  .hero {
+    min-height: 0;
+  }
+
+  h1 {
+    font-size: 40pt;
+  }
+
+  h2 {
+    font-size: 22pt;
+  }
+
+  .card,
+  .work-card,
+  .edu-step,
+  .credential,
+  .contact-form {
+    border: 1px solid #ccc;
+    box-shadow: none;
+    background: #fff;
+  }
+
+  details {
+    display: block;
+  }
+
+  details > summary {
+    display: none;
+  }
+
+  details > *:not(summary) {
+    display: block;
+  }
+
+  .skill-popover {
+    position: static;
+    box-shadow: none;
+    border: 0;
+    padding: 0 0 0 12px;
+  }
+
+  .hero-portrait img,
+  .about-portrait img,
+  .work-shot img,
+  .credential-media img {
+    filter: grayscale(1);
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #555;
+  }
+
+  [data-reveal],
+  [data-split] .split-word > span,
+  .hero [data-hero-rise] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .page {
+    min-height: 0;
+  }
+
+  .hero-grid,
+  .about-grid,
+  .contact-grid,
+  .work-grid,
+  .xp-track,
+  .edu-steps,
+  .cert-row {
+    grid-template-columns: 1fr;
+  }
+}
