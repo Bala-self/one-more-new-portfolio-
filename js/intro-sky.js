@@ -1,7 +1,7 @@
 /**
  * intro-sky.js — shooting-star background for the opening screen.
  *
- * Builds the `.night` layer with twenty `.shooting_star` elements. The
+ * Builds the `.night` layer with two `.shooting_star` elements. The
  * motion itself is pure CSS (see "Intro sky" in opening.css); this module
  * only does what Sass's `random()` loop did in the reference: give each
  * star its own start position and delay, via custom properties.
@@ -13,7 +13,7 @@
  * never sees it; the layer is removed the moment the intro ends.
  */
 
-const STAR_COUNT = 20;
+const STAR_COUNT = 2;
 
 export function createIntroSky(container) {
   const night = document.createElement("div");
@@ -23,12 +23,11 @@ export function createIntroSky(container) {
   for (let i = 0; i < STAR_COUNT; i += 1) {
     const star = document.createElement("span");
     star.className = "shooting_star";
-    // Reference used 50% ± 200px / 50% − (0…300px); spread a little wider
-    // here so large screens are covered too. Delay 0–9999 ms as in the
-    // reference.
+    // Keep the opening understated: both stars appear early enough to be seen
+    // during the short intro instead of waiting through a long random delay.
     star.style.setProperty("--top", `${Math.round(Math.random() * 90 - 45)}vmin`);
     star.style.setProperty("--left", `${Math.round(Math.random() * 60 - 10)}vmin`);
-    star.style.setProperty("--delay", `${Math.round(Math.random() * 9999)}ms`);
+    star.style.setProperty("--delay", `${i * 650 + Math.round(Math.random() * 180)}ms`);
     night.append(star);
   }
 

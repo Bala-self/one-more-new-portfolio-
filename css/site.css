@@ -1645,11 +1645,13 @@ html.hero-parallax .hero-blob {
 /* ----------------------------------------------------------- skills */
 .skills-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(16px, 2vw, 20px);
 }
 .skill-card {
-  padding: 26px 28px;
+  min-width: 0;
+  padding: clamp(20px, 2.5vw, 28px);
   border-radius: var(--radius);
   border: 1px solid rgba(185, 137, 74, 0.18);
   background: var(--surface);
@@ -1664,14 +1666,16 @@ html.hero-parallax .hero-blob {
 .skill-card-head {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-start;
   gap: 12px;
   margin-bottom: 14px;
 }
 .skill-card h3 {
+  min-width: 0;
   font-size: 1.35rem;
 }
 .skill-level {
+  flex: 0 0 auto;
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1702,32 +1706,43 @@ html.hero-parallax .hero-blob {
   flex-wrap: wrap;
   gap: 8px;
 }
-.skill-chips span {
+.skill-chips .skill-chip {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  max-width: 100%;
   padding: 7px 12px;
   border-radius: 10px;
   font-size: 13px;
+  line-height: 1.35;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.7);
   color: var(--ink-soft);
+  text-align: left;
+  overflow-wrap: anywhere;
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity 0.5s, transform 0.5s var(--ease-out);
+  transition: opacity 0.5s, transform 0.5s var(--ease-out), border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease;
   transition-delay: calc(var(--k, 0) * 60ms + 0.3s);
 }
-.is-revealed .skill-chips span {
+.skill-chips .skill-chip:hover,
+.skill-chips .skill-chip:focus-visible {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+.is-revealed .skill-chips .skill-chip {
   opacity: 1;
   transform: none;
 }
-.skill-chips span:nth-child(2) { --k: 1; }
-.skill-chips span:nth-child(3) { --k: 2; }
-.skill-chips span:nth-child(4) { --k: 3; }
-.skill-chips span:nth-child(5) { --k: 4; }
-.skill-chips span:nth-child(6) { --k: 5; }
-.skill-chips span:nth-child(7) { --k: 6; }
+.skill-chips .skill-chip:nth-child(2) { --k: 1; }
+.skill-chips .skill-chip:nth-child(3) { --k: 2; }
+.skill-chips .skill-chip:nth-child(4) { --k: 3; }
+.skill-chips .skill-chip:nth-child(5) { --k: 4; }
+.skill-chips .skill-chip:nth-child(6) { --k: 5; }
+.skill-chips .skill-chip:nth-child(7) { --k: 6; }
 .skill-chips img {
+  flex: 0 0 auto;
   width: 14px;
   height: 14px;
 }
@@ -2526,7 +2541,7 @@ html.hero-parallax .hero-blob {
   .skill-bar > i {
     width: var(--level);
   }
-  .skill-chips span {
+  .skill-chips .skill-chip {
     opacity: 1;
     transform: none;
   }
@@ -2554,9 +2569,11 @@ html.hero-parallax .hero-blob {
 .opening-experience .pet-say {
   position: fixed;
   left: calc(var(--pet-left, 16px) + 70px);
+  right: 16px;
   bottom: calc(var(--pet-bottom, 0px) + 54px);
   z-index: 52;
-  max-width: 230px;
+  width: max-content;
+  max-width: min(230px, calc(100vw - var(--pet-left, 16px) - 86px));
   padding: 9px 13px;
   border-radius: 14px 14px 14px 4px;
   background: var(--ink);
@@ -2822,6 +2839,20 @@ html.hero-parallax .hero-blob {
   }
   .brand {
     font-size: 18px;
+  }
+  .skill-card {
+    padding: 20px 18px;
+  }
+  .skill-card-head {
+    flex-direction: column;
+    gap: 7px;
+  }
+  .skill-chips {
+    gap: 6px;
+  }
+  .skill-chips .skill-chip {
+    padding: 7px 10px;
+    font-size: 12px;
   }
   .contact-big h2.center {
     padding-left: 8vw;

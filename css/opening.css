@@ -93,7 +93,7 @@ body.opening-locked {
    head. Per-star position and delay come from --top / --left / --delay. */
 
 .opening-experience .night {
-  --shooting-time: 3000ms;
+  --shooting-time: 1900ms;
   position: absolute;
   inset: 0;
   z-index: 0;

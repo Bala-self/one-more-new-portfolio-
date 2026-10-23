@@ -429,7 +429,6 @@ function initHeroTilt() {
    small jump when you reach the end. Everything is DOM-only — it reads
    the pet that opening.js mounts and never touches its chat logic. */
 function initBitReactions() {
-  if (reduceMotion) return;
   const root = document.querySelector(".opening-experience");
   const pet = root?.querySelector(".pet");
   if (!root || !pet) return;
@@ -454,7 +453,7 @@ function initBitReactions() {
     sayTimer = setTimeout(() => say.classList.remove("is-on"), ms);
   };
   const emote = (glyph) => {
-    if (pet.hidden) return;
+    if (pet.hidden || reduceMotion) return;
     const el = document.createElement("span");
     el.className = "pet-emote";
     el.textContent = glyph;
@@ -469,6 +468,7 @@ function initBitReactions() {
     }, ms);
   };
   const jump = () => {
+    if (reduceMotion) return;
     const el = pet.querySelector(".pet-jump");
     if (!el || !el.animate) return;
     el.animate(
@@ -477,6 +477,7 @@ function initBitReactions() {
     );
   };
   const wiggle = () => {
+    if (reduceMotion) return;
     const el = pet.querySelector(".pet-tilt");
     if (!el || !el.animate) return;
     el.animate(
@@ -524,6 +525,24 @@ function initBitReactions() {
   });
   document.querySelectorAll(".project-card").forEach((el) => {
     el.addEventListener("pointerenter", () => mood("surprised", 900), { passive: true });
+  });
+
+  // Each skill has a short, plain-language explanation. Mouse users hear it
+  // on hover; keyboard and touch users get the same feedback on focus/tap.
+  document.querySelectorAll(".skill-chip[data-skill-message]").forEach((chip) => {
+    const message = chip.dataset.skillMessage;
+    if (!message) return;
+    const react = () => {
+      speak(message);
+      mood("happy", 1000);
+    };
+    chip.addEventListener("pointerenter", (event) => {
+      if (event.pointerType === "mouse") react();
+    }, { passive: true });
+    chip.addEventListener("focus", react);
+    chip.addEventListener("pointerup", (event) => {
+      if (event.pointerType !== "mouse") react();
+    }, { passive: true });
   });
 
   // 3. Downloads, copies, form, lightbox
